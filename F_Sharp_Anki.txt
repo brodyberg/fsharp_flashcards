@@ -1,0 +1,214 @@
+What is a keyword that associates an identifier with a value or function	let
+What is the let value binding syntax?	let identifier-or-pattern [: type] =&nbsp;<div>&nbsp; &nbsp; expression</div><div>body-expression</div>
+What is the let function binding syntax?	let identifier parameter-list [:return-type] =<div>&nbsp; &nbsp; expression</div><div>body-expression</div>
+What is the scope of let?	Limited to the portion of the containing scope (function, module, file or class) after the binding appears
+If you separate the let expression from the identifier what must you do to the expression?	Indent each line
+What is: let i, j, k = (1, 2, 3)?	Pattern that contains names.&nbsp;
+What is the let body-expression?	The expression in which names are used.&nbsp;
+Where may a let appear?	Module level, definition of a class type or in local scopes.&nbsp;
+Where must a let have a body-expression?	Local scopes and functions, not at module level or in a class type.&nbsp;
+Where are bound names usable?	After the point of definition but not at any point before the let binding appears.&nbsp;
+How do function let bindings differ from value bindings?	Function bindings include the function name, parameter list and return type.&nbsp;
+What is 'a' in let function a = a + 1	Name of the parameter
+What is 'function' in let function a = a + 1	Name of the function.&nbsp;
+What kind of parameter is this: let function2 (a, b) = a + b	This parameter is a pattern, specifically a tuple pattern.&nbsp;
+What does a let binding expression evaluate to?	The value of the last expression.&nbsp;
+What is being applied to the parameter: let function1 (a: int) = a + 1	Type annotation
+What does the second 'int' define: let function1 (a: int) : int = a + 1	The return type of the function.&nbsp;
+Where can a let binding not appear?	A let binding may not appear in a structure or record type.&nbsp;
+What is required of a class to contain a let binding?	A primary constructor ex. type MyClass(a) = ...
+What is the default visibility for a let binding contained within a class?	private
+What is the scope of a let within a type.&nbsp;	Scope is limited to the type (and likely also all previous scope rules apply as well).
+Where may let bindings contain explicit type parameters?	At the module level, in a type or in a computation expression.&nbsp;
+What can be applied to top-level let bindings of a module?	Attributes:&nbsp;<div>[&lt;Obsolete&gt;]</div><div>let function1 x y = x + y</div>
+When is a let-bound value in a module accessible to clients?	When the module is accessible.
+When are let-bindings in a class accessible to clients?	Never, they are private to the class.&nbsp;
+How do clients refer to let-bound values in a module they have access to?	By using the fully-qualified name: ModuleName.FunctionName.&nbsp;
+How do clients refer to let-bound values in an accessible module without full qualification?	By using an import declaration such as: open Module1
+How does a module force clients to use fully qualified names?	By using the RequireQualifiedAccess attribute at the module level.&nbsp;
+What is a do binding used for?	A do binding is used to execute code without defining a function or value.&nbsp;
+What does the expression of a do binding return?	unit
+When is the code in a top-level (module) do binding executed?	When the module is initialized.&nbsp;
+What is the do binding syntax?	[ attributes ]<div>[ do ]expression</div>
+What is the fun keyword for?	The fun keyword defines a lambda expression, i.e. an anonymous function.&nbsp;
+What is the fun keyword syntax?	fun parameter-list -&gt; expression
+What determines the return value of a function?	The last expression which generates a return value.&nbsp;
+What is a fun keyword parameter-list?	Names and optionally, types of parameters. Also the parameter-list can be composed of any F# patterns ex. fun (a, b) -&gt; ... or fun head :: tail -&gt; ...&nbsp;
+What is the rec keyword used for?	It is used in combination with let to define a recursive function.&nbsp;
+What is the syntax of a recursive function bound with let?	let rec function-name parameter-list =&nbsp;<div>&nbsp; &nbsp; function-body</div>
+How does one define mutually recursive functions?	Define the first function with a 'let rec' ... first and then immediately combine the second function to the first using 'and':&nbsp;<div>let rec Even x =&nbsp;</div><div>&nbsp; &nbsp; if x = 0 then true</div><div>&nbsp; &nbsp; else Odd (x - 1)</div><div>and Odd x =</div><div>&nbsp; &nbsp; if x = 1 then true</div><div>&nbsp; &nbsp; else Even (x - 1)</div>
+Is structure a reference or value type?	Structure is a value type, meaning it is stored directly on the stack, or, when used as fields or array elements, inline in the parent type.&nbsp;
+What is the purpose of struct with respect to classes?	Structure is a compact object type that can be more efficient than a class for types that have a small amount of data.&nbsp;
+Syntax of struct declaration	[ attributes ]<div>type [accessibility-modifier] type-name =</div><div>&nbsp; &nbsp; struct</div><div>&nbsp; &nbsp; &nbsp; &nbsp; type-definition-elements</div><div>&nbsp; &nbsp; end</div><div>// or</div><div>[ attributes ]</div><div>[&lt;StructAttribute&gt;]</div><div>type [accessibility-modifier] type-name =</div><div>&nbsp; &nbsp; type-definition-elements</div>
+What may appear in the type-definition-elements for a struct?	Constructors, mutable and immutable fields and they can declare members and interface implementations.&nbsp;
+What are structs not able to do?	Participate in inheritance, use let or do-bindings and cannot recursively contain fields of their own type. They can contain reference cells that reference their own type however.&nbsp;
+What replaces let bindings in structs?	Fields must be declared using the val keyword. Val defines a keyword and type but does not allow initialization.&nbsp;
+What does a struct initialize val declarations to?	They are initialized to zero or null.&nbsp;
+What does a struct implicit constructor do?	Initializes val declarations to zero or null.&nbsp;
+What might a struct explicit constructor do?	It might accept values with which to initialize val declarations.&nbsp;
+Does struct explicit initialization support zero-initialization?	Yes, one may still zero-initialize a struct with an explicit initializer.&nbsp;
+What do records represent?	Simple aggregates of named values, optionally with members.&nbsp;
+What is record syntax?	[ attributes ]<div>type [accessibility-modifier] typename = {</div><div>&nbsp; &nbsp; [mutable] label1 : type1;</div><div>&nbsp; &nbsp; [mutalbe] label2 : type2;</div><div>&nbsp; &nbsp; ...</div><div>&nbsp; &nbsp; }</div><div>&nbsp; &nbsp; member-list</div>
+What is this: let mypoint = { x = 1.0; y = 2.0; }	This is a record expression. Enclosed in braces, type inferred by the compiler if labels don't match an existing record.&nbsp;
+What is the record label precedence rule?	The labels most recently declared take precedence over those of the previously declared type. This allows records with matching labels to handle ambiguous construction.&nbsp;
+How does one explicitly specify labels for a record deferred by precedence?	let myPoint1 = { <font color="#0000ff">Point</font>.x = 1.0; y = 2.0; }
+At record construction, are values required for all fields?	Yes
+At record construction time can values refer to other fields in the initialization expression?	No
+What is a 'copy and update record expression'?	Copies an existing record, optionally changing some of the field values.&nbsp;<div>let myRecord2 = { myRecord with Y = 100; }</div>
+What is the default mutability of records?	Immutable. But you can copy &amp; update or specify a mutable field.&nbsp;
+What is:&nbsp;<div>type Car = {</div><div>&nbsp; &nbsp; Make : string</div><div>&nbsp; &nbsp; Model : string</div><div>&nbsp; &nbsp; }</div>	Record
+For records, why should one not use DefaultAttribute on fields?	This encourages mutable fields. Better: define default instances of records with fields initialized to default values and then use copy and update record expression to set any fields that differ from default values.&nbsp;
+How are record fields different from class fields?	Record fields are automatically exposed as properties and are used in the creation and copying of records.&nbsp;
+How is record construction different than class construction?	Records cannot define a constructor. Instead construction is done using record expressions and record copy and update expressions. Classes have no direct relationship between constructor parameters, fields and properties.&nbsp;
+What are the equality semantics for record?	Like union and structure types, records have structural equality semantics (rather than reference equality semantics).
+Can you use records for pattern matching?	Yes
+How are fields used in record pattern matching?	Explicitly for structural comparison and/or with variables to be assigned when a match occurs.&nbsp;
+What does F# inference offer?	Generic function parameters to the degree the compiler can guarantee based on use.&nbsp;
+Is F# static or dynamically typed?	F# is statically typed i.e. the compiler deduces the exact type for each construct during compilation.&nbsp;
+What determines the return type of a function?	The return type of the last expression in the function.&nbsp;
+What is the syntax for the entrypoint?	[&lt;EntryPoint&gt;]<div>let-function-binding</div>
+What is the entry point?	Where execution of a program formally starts.&nbsp;
+What is required for a valid entry point?	Correct syntax, EntryPoint attribute, and it must be the last function in the last compiled file i.e. the last file in the project to compile.&nbsp;
+What is the signature of the entry point function?	string array -&gt; int
+Where is the implicit entry point?	When there is no EntryPoint attribute that explicitly indicates the entry point, the top level bindings in the last file to be compiled are used as the entry point.&nbsp;
+What is a tuple?	A tuple is a grouping of unnamed but ordered values, possibly of different types.&nbsp;
+What is tuple syntax?	( element, ... , element)
+How does one use matching to access items in a tuple?	let print tuple =<div>&nbsp; &nbsp; match tuple1 with</div><div>&nbsp; &nbsp; &nbsp; &nbsp;| (a, b) -&gt; printfn "Pair %A %A" a b</div>
+Name the two functions that access tuples ordinally.	fst and snd.&nbsp;<div>let c = fst (1, 2)</div><div>let d = snd (1, 2)</div>
+What does the use of tuples as function arguments avoid?	Implicit currying of function arguments.&nbsp;
+What is the type signature of: (10, 10.0, "ten")?	int * float * string
+What does ! do with respect to reference cells?	Dereferences the reference cell.&nbsp;<div>let refVar = ref 6</div><div>refVar := 50</div><div>printfn "%d" !refVar</div>
+What does the '!' symbol do with respect to Computation Expressions?	After a keyword (ex. let!, do!, return!) indicates a modified version of the keyword's behavior should be invoked, as controlled by the workflow.&nbsp;
+What does the != operator do?	Nothing, it's not in the F# language. Use &lt;&gt; for inequality operations.&nbsp;
+What does the &lt;&gt; operator do?	Inequality operations.&nbsp;
+What does the '' operator do?	Delimits a text string.&nbsp;
+What does the """ operator do?	Delimits a verbatim string.&nbsp;<div>let xmlFragment2 = """&lt;book author="Milton"&gt;"""</div>
+What does the # operator do?	Compiler directive ex. #light, #if symbol #else
+What are the three types of Active Patterns?	Single-case, partial-case and multi-case.&nbsp;
+What do single-case Active Patterns do?	Convert the input into a new value.&nbsp;
+What do partial-case Active Patterns do?	Partial-case Active Patterns carve out an incomplete piece of the input space (such as only matching against strings that contain the letter 'x'.&nbsp;
+What do multi-case Active Patterns do?	Multi-case Active Patterns partition the input space into one of several values such as partitioning all possible integers into evens, odds or zero.&nbsp;
+What operator are sigle-case Active Pattern function names bound within?	Banana Clips: (| activePatternName |)
+What does the following define: let (|FileExtension|) filePath = Path.GetExtension(filePath)	Single-case Active Pattern.&nbsp;
+What operator are partial Active Patterns enclosed within?	(|<font color="#0000ff">ident</font>|_|)
+What do partial Active Pattern functions return?	The option type: Some('a) or None.&nbsp;
+What is the operator for block comments?	(* ... *)
+What is the operator for end of line comment?	//
+What characters can start an identifier?	Any letter and _
+All F# input files are assumed to be of which encoding?	UTF-8
+A type of the form 'ident is called?	A <i>variable type</i>. Ex. 'a, 'T, 'Key
+A type of the form _ is called what?	This is an <i>anonymous variable type.&nbsp;</i>
+A type of the form ^ident is called what?	^ident is a <i>statically resolved type variable.&nbsp;</i>
+Name this pattern: _	Wildcard pattern.&nbsp;
+Name this pattern: literal	Constant pattern.&nbsp;
+Name this pattern: ident	Variable pattern.&nbsp;
+Name this pattern: (pat, ..., pat)	Tuple pattern.&nbsp;
+Name this pattern: [ pat; ...; pat; ]	List pattern.&nbsp;
+Name this pattern: [| pat; ...; pat |]	Array pattern.&nbsp;
+Name this pattern: { id=pat; ...; id=pat }	Record pattern.&nbsp;
+Name this pattern: id(pat, ..., pat)	Union case pattern.&nbsp;
+Name this pattern: pat | pat	"Or" pattern.&nbsp;
+Name this pattern: pat &amp; pat	"Both" pattern.&nbsp;
+Name this pattern:&nbsp;<i>pat</i> as <i>id</i>	Named pattern.&nbsp;
+Name this pattern:&nbsp;:? type	Type test pattern.
+Name this pattern:&nbsp;:? type as id	Type case pattern.&nbsp;
+Name this pattern:&nbsp;null	Null pattern.&nbsp;
+What kind of list is this: [ expr; ...; expr; ]	List literal.&nbsp;
+What kind of list is this: [ expr..expr ]	Range list.&nbsp;
+What kind of list is this: [ comp-expr ]	Generated list.&nbsp;
+What list operation is this: expr :: expr	List cons.&nbsp;
+What list operation is this: expr @ expr	List append.&nbsp;
+What is this operator: &amp;&amp;	Boolean and.&nbsp;
+What is this operator: ||	Boolean or
+What is this operator: not	Boolean not.&nbsp;
+Does F# use short-circuit boolean evaluation?	Yes, F# uses short-circuit boolean evaluation.&nbsp;
+What does this comparison operator do: &lt;	Less than
+What does this comparison operator do: &lt;=	Less than or equal
+What does this comparison operator do: &gt;	Greater than
+What does this comparison operator do: &gt;=	Greater than or equal.&nbsp;
+What does this comparison operator do: =	Equal to
+What does this comparison operator do: compare	Compares two values, returning -1, 0 or 1
+What does the return keyword do?	Nothing, there isn't one. Expressions return the value of the last subexpression to be evaluated.&nbsp;
+What does the if keyword allow?	The if keyword allows for the branching of control flow in a function.&nbsp;
+What is the syntax of the if keyword?	if <i>boolean-expresssion </i>then expression1 [ else expression2 ]
+What are the implications of if...then...else being an expression?	1. It returns a value<div>2. Each branch must return the same type</div><div>3. If there is no explicit else branch it's type is unit</div><div>4. Because of 3, if the <i>then</i>&nbsp;branch has any other type other than unit there must be an else branch with the same return type.&nbsp;</div>
+What must the return type of an if with no corresponding else be?	A single if with no corresponding else must return unit.&nbsp;
+Describe this core type: unit	Unit, the unit value, example: ()
+Describe these core types: int, float, etc.&nbsp;	Concrete types, 42, 3.14 etc.&nbsp;
+Describe this core type: 'a	Generic type, a generic (free) type
+Describe this core type: 'a -&gt; 'b&nbsp;	Function type, a function returning a value. Ex: fun x -&gt; x + 1
+Describe this core type: 'a * 'b&nbsp;	Tuple type, an ordered grouping of pairs. ex. ("eggs", "ham")
+Describe this core type: 'a list	List type, a list of values. ex: [1; 2; 3], [1 .. 3]
+Describe this core type: 'a option	Option type, an optional value. ex. Some(3), None.&nbsp;
+What does unit represent?	Nothing of consequence. &nbsp;
+What does the ignore function do?	The ignore function swallows the return type of a function if you want to return unit.&nbsp;
+What is this operator: ..	.. is the list range operator.&nbsp;
+What is list range expression syntax?	[ start .. step .. stop ]
+What does the following list range expression produce? let x = [0 .. 10 .. 50]	val x : int list = [0; 10; 20; 30; 40; 50; ]
+At the simplest level what is list comprehension syntax?	At the simplest level list comprehension syntax is code in brackets. [ expression ]
+How long will the code in the body of a list comprehension be executed?	Until it terminates.&nbsp;
+From the body of a list comprehension, what makes up elements returned by it?	Elements are returned from the list comprehension using the yield keyword.&nbsp;
+What resource is consumed during list comprehension generation?	The list is fully generated in memory when created. If you find yourself creating lists with thousands of elements consider using a seq&lt;_&gt;.&nbsp;
+How does -&gt; simplify list comprehensions with for loops?	Rather than:&nbsp;<div>let multiplesOf x = [ for i in 1 .. 10 do yield x * i ]</div><div>you can do:&nbsp;</div><div>let multiplesOf x = [ for i in 1 .. 10 -&gt; x * i ]</div>
+What is the overall point of list comprehensions?	List comprehensions enable you to quickly and concisely generate lists of data.&nbsp;
+What are <i>aggregate operators</i> with respect to lists?	A set of powerful functions that are useful for any collection of values.&nbsp;
+Which List aggregate operator is this: ('a -&gt; 'b) -&gt; 'a list -&gt; 'b list	This is List.map
+What does the List aggregate operator map do?	Map is a projection operation that creates a new list based on a provided function.&nbsp;
+What does the List aggregate operation fold do?	Fold distills a list of values into a single value.&nbsp;
+What are the two List aggregate operators for fold?	List.reduce and List.fold.&nbsp;<div>Reduce: ('a -&gt; 'a -&gt; 'a) -&gt; 'a list -&gt; 'a</div><div>Fold: ('acc -&gt; 'b -&gt; 'acc) -&gt; 'acc -&gt; 'b list -&gt; 'acc</div>
+In what direction do List.reduce List.fold operate?	List.reduce and List.fold operate from left to right.&nbsp;
+What are the right to left equivalents of List.reduce and List.fold?	The right to left equivalents of List.reduce and List.fold are List.reduceBack and List.foldBack.&nbsp;
+What does List.iter do?	List.iter calls a function with return type of unit on each item in the list.&nbsp;
+What is the signature of List.iter?	('a -&gt; unit) -&gt; 'a list -&gt; unit
+Because List.iter returns unit, what is it primarily used for?	List.iter is primarily used for evaluating the side-effect of the given function.&nbsp;
+What is the best way to represent a value that may or may not exist?	The option type is the best way to represent something that may or may not exist.&nbsp;
+What are the two possible values of the option type?	Some('a) and None
+What common idiom from other languages does the option type replace?	A common idiom the option type replaces is null - which means the absence of a value.&nbsp;
+What is the <i>anonymous</i> module?	The <i>anonymous</i> module is where, by default, F# puts all your code - and it matches the name of the code file with the first letter capitalized.&nbsp;
+How does one explicitly create a module?	One explicitly creates a module by using the module keyword at the top of a source file.&nbsp;
+Does F# support nested modules?	Yes, F# supports nested modules.&nbsp;
+How does one declare a nested module?	To declare a nested module, use the module keyword followed by the name of the module and an equals sign. Nested modules must be indented to disambiguate them from the top-level module.&nbsp;
+What must be done to disambiguate a nested module from the top-level module?	Nested modules must be indented to be disambiguated from the top-level module.&nbsp;
+What is the alternative to modules?	Namespaces are the alternative to modules.&nbsp;
+Namespaces can do just what modules can with which single exception?	Namespaces cannot contain values, they can only contain types.&nbsp;
+Can namespaces be nested?	Namespaces can be nested. They are nested not using whitespace like modules, but rather with dotting. So, PlayingCards.Poker would be a namespace nested within PlayingCards.&nbsp;
+What is the software-engineering difference in usage between modules and namespaces?	The difference is that modules are used for rapid prototyping while namespaces are used for larger-scale projects using an object oriented approach.&nbsp;
+Name the term for when a function somehow changes the state of a program.&nbsp;	Changing the state of a program, or file system is known as a <i>side-effect.&nbsp;</i>
+By default, how changeable the names of things in a functional language?&nbsp;	Not changeable, they are immutable.&nbsp;
+What is the general benefit of immutability?	Immutability limits unintended side-effects - immutable values help you write safer code because you can't screw up what you can't change.&nbsp;
+To what value must all standalone expressions evaluate to?	Standalone expressions must always evaluate to the unit value.&nbsp;
+What's a common error interfacing with .NET libraries due to currying?	.NET libraries like System.IO.StringReader have methods like ReadLine which require unit arguments, so they must be called as ReadLine(). Calling as ReadLine compiles, but is an error at runtime.&nbsp;
+What is this operator named? |&gt;	The |&gt; is the pipe operator.&nbsp;
+What is the signature of this operator? |&gt;	let (|&gt;) x f = f x<div>All this does is allow you to put the function argument in front of the function rather than after. That's all.&nbsp;</div>
+What is the signature of this operator? &lt;|	This is the reverse pipe operator and its signature is: let (&lt;|) f x = f x<div>It reduces the need for parentheses and can make the code cleaner.</div><div>printf "%i" 1+2 // error</div><div>printf "%i" (1+2) // using parens</div><div>printf "%i" &lt;| 1 + 2 // using reverse pipe</div>
+What is the idea of partial function application?	The idea of partial application is that if you fix the first N parameters of a function you get a partial function of the remaining parameters.&nbsp;
+What makes a significant difference for the ease of use of partial application?	The order of parameters makes a big difference in the ease of use of partial application.&nbsp;
+What are the guidelines to design for better partial application?	1. Put earlier: parameters more likely to be static.&nbsp;<div>2. Put last: the datastructure or collection (or most varying argument)</div><div>3. For well-known operations (ex. subtract) put in the expected order.&nbsp;</div>
+What change makes .NET base-class library functions more idiomatic in F#?	Wrapping .NET base-class library functions for partial application makes them more idiomatic in F#.&nbsp;<div>let replace oldStr newStr (s:string) =&nbsp;</div><div>&nbsp; s.Replace(oldValue=oldStr, newValue=newStr)</div>
+What might we call a monoid in a programming context today?	We might call a monoid ICombinable.&nbsp;
+In programming terms is there a connection between monad and monoid?	No, there is no programming connection but there is a mathematical connection.&nbsp;
+What are the three requirements for something to be a monoid?	<div>You start with a bunch of things <i>and</i>&nbsp;some way of combining them two at a time.</div>1. Closure: The result of combining things is always another one of the things.&nbsp;<div>2. Associativity: When combining more than two things, which pairwise combination you do first doesn't matter.&nbsp;</div><div>3. Identity Element: There is a special thing called "zero" such that when you combine any thing with "zero" you get the original thing back.&nbsp;</div>
+What is the Closure rule for monoids?	The closure rule states that the result of combining two things is always another one of the things.&nbsp;
+What is the Associativity rule for monoids?	The associativity rule for monoids states that when combining more than two things, which pairwise combination you do first doesn't matter.&nbsp;
+What is the Identity Element rule for monoids?	The Identity Element rule for monoids states that there is a special thing called "zero" such that when you combine any thing with "zero" you get the original thing back.&nbsp;
+What is the key for identifying the zero for a monoid?	The zero value depends very much on the <i>operation</i>&nbsp;not just the set of things.&nbsp;
+What are the key two parts to the definition of a particular monoid?	The two parts of the definition of any particular monoid are the <i>things</i>&nbsp;and the <i>operation</i>. Ex. "the integers" is not a monoid, but "the integers under addition" is a monoid.&nbsp;
+What is the term for a system that follows the first two rules for a monoid but not the zero fule?	A system that only follows the first two rules but has no zero is referred to as a semigroup.&nbsp;
+What is the practical benefit of the closure rule for monoids?	The practical benefit of the closure rule for monoids is that you can convert pairwise operations that work on lists or sequences.&nbsp;<div>1 + 2 + 3&nbsp;</div><div>becomes</div><div>[1;2;3] |&gt; List.reduce (+)</div>
+What is the practical benefit of the monoid rule of Associativity?	When pairwise operations can be conducted in any order it opens up the option to do:&nbsp;<div>- Divide and Conquer Algorithms</div><div>- Parallelization</div><div>- Incrementalism</div>
+In terms of design patterns, what is a monoid?	A monoid is a way to describe an aggregation pattern. We have a list of things, we have some way of combining them and we get a single aggregated object back at the end. Or, in F# terms:&nbsp;<div>Monoid Aggregation: 'T list -&gt; 'T</div>
+What are some conversational clues you are dealing with a monoid?	When you are desgining code and start using terms like "sum", "product", "composition" or "concatenation."&nbsp;
+When are lazy computations evaluated?	Lazy computations are evaluated when the result is needed.
+What is the syntax for a lazy computation?	let identifier = lazy ( expression )
+How does one cause a lazy computation to be performed?	To force the computation to be performed you call the method Force.&nbsp;<div>let x = 10</div><div>let result = lazy (x + 10)</div><div>printfn "%d" (result.Force())</div>
+What do subsequent calls to Lazy Force return?	Subsequent calls to Force return the same result and do not execute any code.&nbsp;
+What is a sequence?	A sequence is a logical series of elements, all of one type.&nbsp;
+When are sequences useful?	Sequences are useful when you have a large ordered collection of data but do not necessarily expect to use all of the elements.&nbsp;
+When are individual elements of a sequence computed?	Individual elements of a sequence are computed only as required, so a sequence can provide better performance than a list in situations in which not all the elements are used.&nbsp;
+What is a primary difference between lists and sequences?	Lists have all of their members in memory, while sequences compute each individual elements only as required.&nbsp;
+What is the F# type for sequences?	The F# type for sequences is seq&lt;'T&gt; which is an alias for IEnumerable&lt;T&gt;. Therefore any .NET Framework type that implements IEnumerable can be used as a sequence.&nbsp;
+What is the .NET type backing seq&lt;'T&gt;?	The .NET backing type is IEnumerable&lt;T&gt;
+What is a sequence expression?	A sequence expression is an expression that evaluates to a sequence. The simplest form specifies a range ex. seq { 1 .. 5 }
+When does one use yield in a sequence expression?	One uses yield when each iteration is expected to generate a single element of the sequence.&nbsp;
+When does one use yield! in a sequence expression?	One uses yield! in a sequence expression when each iteration is expected to produce a sequence of elements. Elements from generated from each iteration are concatenated to produce the final sequence.&nbsp;
+What is happening in the following code:&nbsp;<div>let rec inorder tree =</div><pre>    seq {<br>      match tree with<br>          | Tree(x, left, right) -&gt; <br>              yield! inorder left<br>              yield x<br>              yield! inorder right<br>          | Leaf x -&gt; yield x<br>    }<br></pre>	This code is a sequence expression that uses both yield to produce single elements and yield! to produce lists of elements. It does this by matching on a discriminated union.&nbsp;
