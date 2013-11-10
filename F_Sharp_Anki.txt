@@ -235,3 +235,33 @@ In FSI how does one read a source file, compile and run it?	One reads, compiles 
 In FSI how does one leave the program?	One leaves FSI by using the #quit directive.&nbsp;
 In FSI how does one reference an assembly?	One references an assembly in FSI using the #r directive.&nbsp;
 In FSI how does one display performance information?	One uses the #time ["on"|"off"] directive for information on real time, CPU time and garbage collection information on each section of the code that is interpreted and executed.&nbsp;
+How are modules implemented by the compiler?	Modules are implemented as a common language runtime (CLR) class that has only static members.&nbsp;
+What is the default <i>accessibility-modifier</i>&nbsp;for modules?	The default <i>accessibility-modifier</i>&nbsp;for modules is public.&nbsp;
+List the <i>accessibility-modifiers available&nbsp;</i>for modules.&nbsp;	The <i>accessibility-modifier</i>&nbsp;can be one of public, private or internal.&nbsp;
+What does the [&lt;AutoOpen&gt;] attribute do with respect to Modules?	Modules with the [&lt;AutoOpen&gt;] attribute do not need to be opened but instead are opened automatically.&nbsp;
+What do type extensions allow?	Type extensions allow you to add new members to previously defined object types.&nbsp;
+What is the syntax for type extension?	type typename with<div>&nbsp; &nbsp; member self-identifier.member-name =</div><div>&nbsp; &nbsp; &nbsp; &nbsp; body</div><div>&nbsp; &nbsp; ...</div><div>&nbsp; &nbsp; [ end ]</div>
+What are the two forms of type extension?	1) Intrinsic extension is an extension that appears in the same namespace or module, in the same source file and assembly as the type being extended.&nbsp;<div>2) Optional extension appears outside the original module, namespace or assembly of the type being extended.&nbsp;</div>
+Of the two forms of type extension, which appears on the type when it is examined by reflection?	Intrinsic extensions appear on the type when the type is examined by reflection, optional extensions do not.&nbsp;
+Of the two forms of type extension, which does not appear on the type when it is examined by reflection?	Optional extensions do not appear on the type when the type is examined by reflection, while intrinsic extensions do appear on the type under reflection.&nbsp;
+When are optional extensions in scope?	Optional extensions are only in scope when the module containing that extension is open.&nbsp;
+What is the syntax for creating a type extension for a type abbreviation.&nbsp;	There isn't one, you can't create a type extension for a type abbreviation.&nbsp;
+What types of members are allowed for type extensions?	Members may be static or instance i.e. static or instance properties or static or instance methods.&nbsp;
+How are optional extension members compiled?	Optional extension members are compiled to static members for which the object instance is passed implicitly as the first parameter.&nbsp;
+How do instance members defined as type extensions behave at runtime?	Instance members, although they are compiled to static members behave as instance members at runtime.&nbsp;
+What type of extension methods are not allowed as type extensions?	Extension methods may not be virtual or abstract.&nbsp;
+Can extension methods overload?	Extension methods may overload methods of the same name.&nbsp;
+To which method does the compiler give preference in the case of an ambiguous call between a type method and extension method?	The compiler gives preference to non-extension methods in the case of an ambiguous call.&nbsp;
+How might ambiguity occur in client code when dealing with extension members for a particular type?	Ambiguity occurs if a client opens two different scopes that define the same member names.&nbsp;
+Where can you overload arithmetic operators?	You can overload arithmetic operators at the class, record type or global level.&nbsp;
+What is the syntax for overloading an arithmetic operator as a class or record member?	static member (operator-symbols) (parameter-list) =<div>&nbsp; &nbsp; method-body</div>
+What is the syntax for overloading arithmetic operators at the global level?	let [inline] (operator-symbols) parameter-list =<div>&nbsp; &nbsp; function-body</div>
+Operator overloads for classes and records must be of what type of method?	Operator overloads for classes and records must be methods of static type.&nbsp;
+Wht symbol indicates an operator in an operator overload declaration is unary rather than binary?	The tilde (~) symbol indicates that an operator is unary rather than binary.&nbsp;<div>static member (~-) (v : Vector)</div>
+What is the inline modifier used for?	The inline modifier can be applied to functions to be integrated directly into the calling code.&nbsp;
+When must you use the inline modifier for a function?	When a function is parameterized by static type parameters you must inline the function. There is no such restriction for ordinary generic type parameters.&nbsp;
+What must you do before using the inline function modifier?	You should try all other optimization techniques and measure performance before using the inline function modifier.&nbsp;
+What are the risks of using the inline function modifier?	Overuse of the inline function modifier can cause your code to be less resistant to changes in compiler optimizations and the implementation of library functions. They do not always result in improved performance.&nbsp;
+What type of function cannot have statically resolved type parameters?	Non-inline functions may not have statically resolved type parameters.&nbsp;
+At runtime, what does the presence of the inline function modifier affect?	The presence of inline affects type inference. Inline functions can have statically-resolved type parameters.&nbsp;
+What is the signature of this function:&nbsp;<div>let inline printAsFloatingPoint number =&nbsp;</div><div>&nbsp; &nbsp; printfn "%f" (float number)</div>	^a -&gt; unit when ^a : (static member op_Explicit : ^a -&gt; float)
