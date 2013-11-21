@@ -68,7 +68,7 @@ Is F# static or dynamically typed?	F# is statically typed i.e. the compiler dedu
 What determines the return type of a function?	The return type of the last expression in the function.&nbsp;
 What is the syntax for the entrypoint?	[&lt;EntryPoint&gt;]<div>let-function-binding</div>
 What is the entry point?	Where execution of a program formally starts.&nbsp;
-What is required for a valid entry point?	Correct syntax, EntryPoint attribute, and it must be the last function in the last compiled file i.e. the last file in the project to compile.&nbsp;
+What is required for an explicit entry point?	Correct syntax, EntryPoint attribute, and it must be the last function in the last compiled file i.e. the last file in the project to compile.&nbsp;
 What is the signature of the entry point function?	string array -&gt; int
 Where is the implicit entry point?	When there is no EntryPoint attribute that explicitly indicates the entry point, the top level bindings in the last file to be compiled are used as the entry point.&nbsp;
 What is a tuple?	A tuple is a grouping of unnamed but ordered values, possibly of different types.&nbsp;
@@ -78,12 +78,6 @@ Name the two functions that access tuples ordinally.	fst and snd.&nbsp;<div>let 
 What does the use of tuples as function arguments avoid?	Implicit currying of function arguments.&nbsp;
 What is the type signature of: (10, 10.0, "ten")?	int * float * string
 What does ! do with respect to reference cells?	Dereferences the reference cell.&nbsp;<div>let refVar = ref 6</div><div>refVar := 50</div><div>printfn "%d" !refVar</div>
-What does the '!' symbol do with respect to Computation Expressions?	After a keyword (ex. let!, do!, return!) indicates a modified version of the keyword's behavior should be invoked, as controlled by the workflow.&nbsp;
-What does the != operator do?	Nothing, it's not in the F# language. Use &lt;&gt; for inequality operations.&nbsp;
-What does the &lt;&gt; operator do?	Inequality operations.&nbsp;
-What does the '' operator do?	Delimits a text string.&nbsp;
-What does the """ operator do?	Delimits a verbatim string.&nbsp;<div>let xmlFragment2 = """&lt;book author="Milton"&gt;"""</div>
-What does the # operator do?	Compiler directive ex. #light, #if symbol #else
 What are the three types of Active Patterns?	Single-case, partial-case and multi-case.&nbsp;
 What do single-case Active Patterns do?	Convert the input into a new value.&nbsp;
 What do partial-case Active Patterns do?	Partial-case Active Patterns carve out an incomplete piece of the input space (such as only matching against strings that contain the letter 'x'.&nbsp;
@@ -266,7 +260,7 @@ What type of function cannot have statically resolved type parameters?	Non-inlin
 At runtime, what does the presence of the inline function modifier affect?	The presence of inline affects type inference. Inline functions can have statically-resolved type parameters.&nbsp;
 What is the signature of this function:&nbsp;<div>let inline printAsFloatingPoint number =&nbsp;</div><div>&nbsp; &nbsp; printfn "%f" (float number)</div>	^a -&gt; unit when ^a : (static member op_Explicit : ^a -&gt; float)
 What is class constructor syntax?	new (argument-list) = constructor body
-Describe class definition syntax.&nbsp;	type [access-modifier] type-name [type-params] [access-modifier] ( parameter-list ) [as identifier] =<div>&nbsp; &nbsp; [ class ]</div><div>&nbsp; &nbsp; &nbsp; [ inherit base-type-name(base-constructor args) ]</div><div>&nbsp; &nbsp; &nbsp; [ let-bindings ]</div><div>&nbsp; &nbsp; &nbsp; [ do-bindings ]</div><div>&nbsp; &nbsp; &nbsp; member-list</div><div>&nbsp; &nbsp; [ end ]</div>
+Describe class definition syntax.&nbsp;	type [access-modifier] type-name [type-params] [access-modifier] ( parameter-list ) [as identifier] =<div>&nbsp; &nbsp; [ class ]</div><div>&nbsp; &nbsp; &nbsp; [ inherit base-type-name(base-constructor-args) ]</div><div>&nbsp; &nbsp; &nbsp; [ let-bindings ]</div><div>&nbsp; &nbsp; &nbsp; [ do-bindings ]</div><div>&nbsp; &nbsp; &nbsp; member-list</div><div>&nbsp; &nbsp; [ end ]</div>
 What is the primary type concept that supports object oriented programming in F#?	The class is the primary type concept that supports object oriented programming in F#.
 What does <i>type-params</i>&nbsp;describe in a class definition?	<i>Type-params</i>&nbsp;describes optional generic type parameters. It consists of type parameter names and constraints enclosed by angle (&lt; and &gt;).&nbsp;
 What is the default visibility of a class?	The default visibility of a class is public.&nbsp;
@@ -294,3 +288,86 @@ How are type abbreviations compiled?	They aren't preserved in the .NET Framework
 What is the following:&nbsp;<div>type transform&lt;'a&gt; = 'a -&gt; 'a</div>	Transform is a type abbreviation that represents a function that takes a single argument of any type and returns a single value of that same type.&nbsp;
 With respect to syntax, what do square brackets around a production symbolize?	Square brackets symbolize an optional production.&nbsp;
 With respect to syntax, what do literal productions symbolize?	A literal production symbolizes a required production within the larger construct.&nbsp;
+Define Symbol or Operator: !	1. Dereferences a reference cell<div>2. After keyword, invokes modified control within a workflow</div>
+Define Symbol or Operator:&nbsp;!=	Doesn't exist - use &lt;&gt; for inequality operations
+Define Symbol or Operator:&nbsp;''	Delimits a text string
+Define Symbol or Operator:&nbsp;"""	Delimits a verbatim string. Differs from @ because it allows you to included double quotes without escaping.&nbsp;
+Define Symbol or Operator:&nbsp;#	1. Compiler directive ex. #light, #if symbol #else<div>2. When used on a type, indicates a flexible type, which refers to a type or any one of its derived types</div>
+Define Symbol or Operator:&nbsp;$	Used internally for compiler-generated symbol names
+Define Symbol or Operator:&nbsp;%	1. Modulus<div>2. Code quotation splicing operations</div>
+Define Symbol or Operator:&nbsp;%?	Computes modulus when right side is nullable type.&nbsp;
+Define Symbol or Operator:&nbsp;&amp;	1. Computes address of mutable value - for use in language interop<div>2. Used in AND patterns</div>
+Define Symbol or Operator:&nbsp;&amp;&amp;	Boolean AND
+Define Symbol or Operator:&nbsp;&amp;&amp;&amp;	Bitwise AND
+Define Symbol or Operator:&nbsp;'	1. Delimits single character literal<div>2. Indicates generic type parameter</div>
+Define Symbol or Operator:&nbsp;``..``	Delimits an identifier that would otherwise not be a legal identifier, such as a language keyword.&nbsp;
+Define Symbol or Operator:&nbsp;()	Represents the single value of the unit type.&nbsp;
+Define Symbol or Operator:&nbsp;(...)	1. Indicates the order in which expressions are evaluated<div>2. Delimits a tuple</div><div>3. Used in operator definitions</div>
+Define Symbol or Operator:&nbsp;(*...*)	Multiline comments
+Define Symbol or Operator:&nbsp;(|...|)	Single case active pattern - aka banana clips
+Define Symbol or Operator:&nbsp;*	1. As binary operator: multiplies left and right<div>2. In types, indicates pairing in a tuple</div><div>3. Used in units of measure types</div>
+Define Symbol or Operator:&nbsp;*?	Multiplies the left and right sides when the right side is a nullable type.&nbsp;
+Define Symbol or Operator:&nbsp;**	Exponentiation (x ** y)
+Define Symbol or Operator:&nbsp;+	1. Binary: Adds left and right sides<div>2. Unary: indicates positive quantity</div>
+Define Symbol or Operator:&nbsp;+?	Adds right and left sides where right side is nullable type
+Define Symbol or Operator:&nbsp;,	1. Separates elements of a tuple<div>2. Separates elements of type parameters</div>
+Define Symbol or Operator: -&gt;&nbsp;	1. In functions, delimits arguments and return values<div>2. Yields an expression in sequence expressions (replaces do yield)</div><div>3. Used in match expressions</div>
+Define Symbol or Operator: .	1. Member access. Separates individual names from fully qualified name.&nbsp;<div>2. Specifies a decimal point for floats</div>
+Define Symbol or Operator: ..	Range operator.&nbsp;
+Define Symbol or Operator: .. ..&nbsp;	Range operator with increment. ex. start..step..stop
+Define Symbol or Operator: .[...]	Accesses an array element
+Define Symbol or Operator: /	1. Division, divides numerator from denominator<div>2. Used in units of measure types</div>
+Define Symbol or Operator: /?	Division when right side is nullable type
+Define Symbol or Operator: //	Single line comment
+Define Symbol or Operator: ///	XML Comment - fully supported, just not autocompleted by entry of the triple-slash by IDE
+Define Symbol or Operator: :	In a type annotation, separates a parameter or member name from its type
+Define Symbol or Operator: ::	1. Creates a list. Element on left is added to list on right.&nbsp;<div>2. Used in pattern matching to separate parts of a list.&nbsp;</div>
+Define Symbol or Operator: :=	Assigns a value to a reference cell
+Define Symbol or Operator: :&gt;	Converts a type to a type that is higher in the hierarchy
+Define Symbol or Operator: :?	Type Test Operator: Returns true if the value matches the specified type, otherwise returns false
+Define Symbol or Operator: :?&gt;	Converts a type to a type that is lower in the hierarchy
+Define Symbol or Operator: ;	1. Separates expressions (in verbose syntax)<div>2. Separates elements of a list</div><div>3. Separates fields of a record</div>
+Define Symbol or Operator: &lt;	Less than
+Define Symbol or Operator: &lt;?	Less than when right side is nullable type
+Define Symbol or Operator: &lt;&lt;	Backward Composition Operator: Composes functions in reverse order.&nbsp;
+Define Symbol or Operator: &lt;&lt;&lt;	Shifts bits in the quantity on the left side to the left by the number of bits specified on the right side.&nbsp;
+Define Symbol or Operator: &lt;-	Mutation: Assigns value to a variable
+Define Symbol or Operator: &lt;...&gt;	Delimits type parameters
+Define Symbol or Operator: &lt;&gt;	Not equals
+Define Symbol or Operator: &lt;&gt;?	Not equals when right side is nullable type.&nbsp;
+Define Symbol or Operator: &lt;=	Less than or equal
+Define Symbol or Operator: &lt;=?	Less than or equal with nullable type on right side
+Define Symbol or Operator: &lt;|	Backward pipe: passes the result of the expression on the right to the function on the left side.&nbsp;
+Define Symbol or Operator: &lt;||	Passes the tuple of two arguments on the right side to the function on the left side.&nbsp;
+Define Symbol or Operator: &lt;|||	Passes the tuple of three arguments on the right side to the function on the left side.&nbsp;
+Define Symbol or Operator: &lt;@...@&gt;	Delimits a typed code quotation
+Define Symbol or Operator: &lt;@@...@@&gt;	Delimits an untyped code quotation
+Define Symbol or Operator: =	Equality operator
+Define Symbol or Operator: =?	Equality operator when right side is nullable type.&nbsp;
+Define Symbol or Operator: ==	Not in the language - use = for equality operations
+Define Symbol or Operator: &gt;	Greater than
+Define Symbol or Operator: &gt;?	Greater than when right side is nullable type.&nbsp;
+Define Symbol or Operator: &gt;&gt;	Forward Composition Operator: Composes two functions
+Define Symbol or Operator: &gt;&gt;&gt;	Shifts bits in the quantity on the left side to the right by the number of places specified on the right side
+Define Symbol or Operator: &gt;=	Greater than or equal
+Define Symbol or Operator: ?	1. Specifies an optional argument<div>2. Used as an operator for dynamic method and property calls. Provide your own implementation.&nbsp;</div>
+Define Symbol or Operator: @	1. Concatenates two lists<div>2. When placed before a string literal it indicates that the string will be interpreted verbatim - ie. no interpretation of escape characters.&nbsp;</div>
+Define Symbol or Operator: [...]	Delimits elements of a list
+Define Symbol or Operator: [|...|]	Delimits elements of an array
+Define Symbol or Operator: [&lt;...&gt;]	Delimits an attribute
+Define Symbol or Operator: \	Escapes next character in string literal
+Define Symbol or Operator: ^	1. Specifies static type parameter resolved at compile rather than runtime<div>2. Concatenates strings</div>
+Define Symbol or Operator: ^^^	Computes bitwise exclusive OR operation
+Define Symbol or Operator: _	1. Wildcard pattern<div>2. Specifies an anonymous generic parameter</div>
+Define Symbol or Operator: `	Used internally to indicate a generic type parameter
+Define Symbol or Operator: {...}	1. Delimits a squence of expressions and computation expressions<div>2. Used in record definitions</div>
+Define Symbol or Operator: |	Delimits individual match cases, individual discriminated union cases and enumeration values.&nbsp;
+Define Symbol or Operator: ||	Boolean OR
+Define Symbol or Operator: |||	Bitwise OR
+Define Symbol or Operator: |&gt;	Forward Pipe Operator: Passes the result of the left side to the function on the right side.&nbsp;
+Define Symbol or Operator: ||&gt;	Passes the tuple of two arguments on the left side to the function on the right side.&nbsp;
+Define Symbol or Operator: |||&gt;	Passes the tuple of three arguments on the left side to the function on the right side.&nbsp;
+Define Symbol or Operator: ~~	Used to declare an overload for the unary negation operator
+Define Symbol or Operator: ~~~	Computes bitwise NOT&nbsp;
+Define Symbol or Operator: ~-	Used to declare an overload for the unary minus operator.&nbsp;
+Define Symbol or Operator: ~+	Used to declare an overload to the unary plus operator.
