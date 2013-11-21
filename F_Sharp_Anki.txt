@@ -210,7 +210,7 @@ What is the F# type for sequences?	The F# type for sequences is seq&lt;'T&gt; wh
 What is the .NET type backing seq&lt;'T&gt;?	The .NET backing type is IEnumerable&lt;T&gt;
 What is a sequence expression?	A sequence expression is an expression that evaluates to a sequence. The simplest form specifies a range ex. seq { 1 .. 5 }
 When does one use yield in a sequence expression?	One uses yield when each iteration is expected to generate a single element of the sequence.&nbsp;
-When does one use yield! in a sequence expression?	One uses yield! in a sequence expression when each iteration is expected to produce a sequence of elements. Elements from generated from each iteration are concatenated to produce the final sequence.&nbsp;
+When does one use yield! in a sequence expression?	One uses yield! in a sequence expression when each iteration is expected to produce a sequence of elements. Elements generated from each iteration are concatenated to produce the final sequence.&nbsp;
 What is happening in the following code:&nbsp;<div>let rec inorder tree =</div><pre>    seq {<br>      match tree with<br>          | Tree(x, left, right) -&gt; <br>              yield! inorder left<br>              yield x<br>              yield! inorder right<br>          | Leaf x -&gt; yield x<br>    }<br></pre>	This code is a sequence expression that uses both yield to produce single elements and yield! to produce lists of elements. It does this by matching on a discriminated union.&nbsp;
 What allows for the creation of ad-hoc types?	Type abbreviations, such as:&nbsp;<div>type NodeList = List&lt;node&gt; allow you to create ad-hoc types.&nbsp;</div>
 What is a fundamental limitation of type systems that TypeProviders address?	TypeProviders address the fundamental limitation of type systems in that type systems only describe the shape of data <i>within</i>&nbsp;programs.&nbsp;
@@ -248,7 +248,7 @@ When are optional extensions in scope?	Optional extensions are only in scope whe
 What is the syntax for creating a type extension for a type abbreviation.&nbsp;	There isn't one, you can't create a type extension for a type abbreviation.&nbsp;
 What types of members are allowed for type extensions?	Members may be static or instance i.e. static or instance properties or static or instance methods.&nbsp;
 How are optional extension members compiled?	Optional extension members are compiled to static members for which the object instance is passed implicitly as the first parameter.&nbsp;
-How do instance members defined as type extensions behave at runtime?	Instance members, although they are compiled to static members behave as instance members at runtime.&nbsp;
+How do instance members defined as type extensions behave at runtime?	As instance members, although they are compiled to static members behave as instance members at runtime.&nbsp;
 What type of extension methods are not allowed as type extensions?	Extension methods may not be virtual or abstract.&nbsp;
 Can extension methods overload?	Extension methods may overload methods of the same name.&nbsp;
 To which method does the compiler give preference in the case of an ambiguous call between a type method and extension method?	The compiler gives preference to non-extension methods in the case of an ambiguous call.&nbsp;
@@ -257,7 +257,7 @@ Where can you overload arithmetic operators?	You can overload arithmetic operato
 What is the syntax for overloading an arithmetic operator as a class or record member?	static member (operator-symbols) (parameter-list) =<div>&nbsp; &nbsp; method-body</div>
 What is the syntax for overloading arithmetic operators at the global level?	let [inline] (operator-symbols) parameter-list =<div>&nbsp; &nbsp; function-body</div>
 Operator overloads for classes and records must be of what type of method?	Operator overloads for classes and records must be methods of static type.&nbsp;
-Wht symbol indicates an operator in an operator overload declaration is unary rather than binary?	The tilde (~) symbol indicates that an operator is unary rather than binary.&nbsp;<div>static member (~-) (v : Vector)</div>
+What symbol indicates an operator in an operator overload declaration is unary rather than binary?	The tilde (~) symbol indicates that an operator is unary rather than binary.&nbsp;<div>static member (~-) (v : Vector)</div>
 What is the inline modifier used for?	The inline modifier can be applied to functions to be integrated directly into the calling code.&nbsp;
 When must you use the inline modifier for a function?	When a function is parameterized by static type parameters you must inline the function. There is no such restriction for ordinary generic type parameters.&nbsp;
 What must you do before using the inline function modifier?	You should try all other optimization techniques and measure performance before using the inline function modifier.&nbsp;
@@ -265,3 +265,32 @@ What are the risks of using the inline function modifier?	Overuse of the inline 
 What type of function cannot have statically resolved type parameters?	Non-inline functions may not have statically resolved type parameters.&nbsp;
 At runtime, what does the presence of the inline function modifier affect?	The presence of inline affects type inference. Inline functions can have statically-resolved type parameters.&nbsp;
 What is the signature of this function:&nbsp;<div>let inline printAsFloatingPoint number =&nbsp;</div><div>&nbsp; &nbsp; printfn "%f" (float number)</div>	^a -&gt; unit when ^a : (static member op_Explicit : ^a -&gt; float)
+What is class constructor syntax?	new (argument-list) = constructor body
+Describe class definition syntax.&nbsp;	type [access-modifier] type-name [type-params] [access-modifier] ( parameter-list ) [as identifier] =<div>&nbsp; &nbsp; [ class ]</div><div>&nbsp; &nbsp; &nbsp; [ inherit base-type-name(base-constructor args) ]</div><div>&nbsp; &nbsp; &nbsp; [ let-bindings ]</div><div>&nbsp; &nbsp; &nbsp; [ do-bindings ]</div><div>&nbsp; &nbsp; &nbsp; member-list</div><div>&nbsp; &nbsp; [ end ]</div>
+What is the primary type concept that supports object oriented programming in F#?	The class is the primary type concept that supports object oriented programming in F#.
+What does <i>type-params</i>&nbsp;describe in a class definition?	<i>Type-params</i>&nbsp;describes optional generic type parameters. It consists of type parameter names and constraints enclosed by angle (&lt; and &gt;).&nbsp;
+What is the default visibility of a class?	The default visibility of a class is public.&nbsp;
+What does the first <i>access-modifier </i>apply to in a class definition?	The first <i>access-modifier </i>applies to the type.&nbsp;
+What does the second <i>access-modifier</i>&nbsp;apply to in the definition of a class?	The second <i>access-modifier</i>&nbsp;applies to the primary constructor.&nbsp;
+What keyword specifies the base for a class?	The inherit keyword specifies the base for a class.&nbsp;
+When a class inherits from a base, what three things must one do for the base constructor?	Call the base constructor with arguments, wrapped in parentheses.&nbsp;
+In a class definition what does the <i>member-list </i>consist of?	The <i>member-list</i>&nbsp;consists of additional constructors, instance and static method declarations, interface declarations, abstract bindings and property and event declarations.&nbsp;
+What is the optional as keyword in a class definition used for?	The as keyword is used with an identifier to give the name to the instance variable, or self-identifier which can be used in the type definition to refer to the instance of the type.&nbsp;
+What do the keywords class and end do?	They optionally mark the start and end of a class definition.&nbsp;
+What keyword allows the definition of mutually recursive types?	The and keyword allows for the definition of mutually recursive types.&nbsp;
+What is the difference in how F# class constructors work and other .NET languages?	F# classes always have a primary constructor whose arguments are described in the <i>parameter-list</i>&nbsp;that follows the type name and whose body consists of let/let rec bindings at the start of the class declaration and the do bindings that follow.&nbsp;
+Where are the arguments of the class primary constructor in scope?	The arguments of the primary constructor are in scope throughout the class declaration.&nbsp;
+What does the body of a class primary constructor consist of?	The body of a class primary constructor consists of let/let rec bindings and do bindings that follow.&nbsp;
+How do you add additional constructors to a class?	You can add additional constructors to a class using the new keyword.&nbsp;
+What must the body of a new class constructor invoke?	The body of a new constructor must invoke the primary constructor.&nbsp;
+What is the following code doing?<div>type MyClass1(x: int, y: int) =</div><div>&nbsp; &nbsp; new() = MyClass1(0, 0)</div>	This is an additional constructor invoking the primary constructor.&nbsp;
+When do let and do bindings run when within a class definition?	Let and do bindings in a class definition run whenever a class instance is created.&nbsp;
+In a class definition, what is a let binding that is a function compiled into?	A let binding that is a function is compiled into a member.&nbsp;
+In a class definition, what is a let binding that is a value compiled into?	If a let binding is a value that is not used in any function or member it is compiled into a variable local to the constructor.&nbsp;
+What is a type abbreviation?	A type abbreviation is an alias or alternate name for a type. ex. type sizeType = uint32
+What is the syntax for type abbreviation?	type type-abbreviation = type-name
+What are the uses of type abbreviations?	You can use type abbreviations to give a type a more meaningful name for readability, or an easy to use name for a type that's otherwise difficult to write out.&nbsp;
+How are type abbreviations compiled?	They aren't preserved in the .NET Framework MSIL - so if you call an F# assembly from another .NET Framework language you'll have to use the underlying type.&nbsp;
+What is the following:&nbsp;<div>type transform&lt;'a&gt; = 'a -&gt; 'a</div>	Transform is a type abbreviation that represents a function that takes a single argument of any type and returns a single value of that same type.&nbsp;
+With respect to syntax, what do square brackets around a production symbolize?	Square brackets symbolize an optional production.&nbsp;
+With respect to syntax, what do literal productions symbolize?	A literal production symbolizes a required production within the larger construct.&nbsp;
