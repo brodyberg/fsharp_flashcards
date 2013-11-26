@@ -117,7 +117,6 @@ What is this operator: ||	Boolean or
 What is this operator: not	Boolean not.&nbsp;
 Does F# use short-circuit boolean evaluation?	Yes, F# uses short-circuit boolean evaluation.&nbsp;
 What does this comparison operator do: &lt;	Less than
-What does this comparison operator do: &lt;=	Less than or equal
 What does this comparison operator do: &gt;	Greater than
 What does this comparison operator do: &gt;=	Greater than or equal.&nbsp;
 What does this comparison operator do: =	Equal to
@@ -206,7 +205,7 @@ What is a sequence expression?	A sequence expression is an expression that evalu
 When does one use yield in a sequence expression?	One uses yield when each iteration is expected to generate a single element of the sequence.&nbsp;
 When does one use yield! in a sequence expression?	One uses yield! in a sequence expression when each iteration is expected to produce a sequence of elements. Elements generated from each iteration are concatenated to produce the final sequence.&nbsp;
 What is happening in the following code:&nbsp;<div>let rec inorder tree =</div><pre>    seq {<br>      match tree with<br>          | Tree(x, left, right) -&gt; <br>              yield! inorder left<br>              yield x<br>              yield! inorder right<br>          | Leaf x -&gt; yield x<br>    }<br></pre>	This code is a sequence expression that uses both yield to produce single elements and yield! to produce lists of elements. It does this by matching on a discriminated union.&nbsp;
-What allows for the creation of ad-hoc types?	Type abbreviations, such as:&nbsp;<div>type NodeList = List&lt;node&gt; allow you to create ad-hoc types.&nbsp;</div>
+What feature allows for the creation of ad-hoc types?	Type abbreviations, such as:&nbsp;<div>type NodeList = List&lt;node&gt; allow you to create ad-hoc types.&nbsp;</div>
 What is a fundamental limitation of type systems that TypeProviders address?	TypeProviders address the fundamental limitation of type systems in that type systems only describe the shape of data <i>within</i>&nbsp;programs.&nbsp;
 What feature uses the F# compiler to wrap external data so you can focus coding?	TypeProviders are the F# feature that leverages the F# compiler to handle all the type-wrapper-conversion-generation stuff for you so you can just focus on coding.&nbsp;
 At what point during code lifetime does a TypeProvider generate wrappers?	Wrappers provided by TypeProviders are generated at <i>design time</i>&nbsp;so you can interact with them in the IDE or FSI window.&nbsp;
@@ -417,3 +416,73 @@ When you establish a provided type with ProvidedTypeDefinition what does baseTyp
 What is this code specifying with respect to representation of provided objects?<div><br /></div><div><div>&nbsp;ProvidedConstructor(parameters = [],&nbsp;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;InvokeCode= (fun args -&gt; &lt;@@ (new List&lt;string&gt;()) :&gt; obj @@&gt;))</div></div>	This code is specifying a representation of provided objects in terms of a list of strings.&nbsp;
 What is the following specifying with respect to provided type representations?<div><br /></div><div>type InternalData() =&nbsp;</div><div>&nbsp; &nbsp;let data = List&lt;string&gt;()</div><div>&nbsp; &nbsp;member x.RuntimeCall() = data.Count</div><div><br /></div><div>ProvidedConstructor(parameters = [],</div><div>&nbsp; &nbsp;InvokeCode = (fun args -&gt; &lt;@@ (new InternalData()) :&gt; obj @@&gt;))&nbsp;</div>	InternalData is defined in the type provider and is used at runtime to form the representation along with one or more runtime operations. Provided members can then construct instances of this object type.&nbsp;
 Can you use a type provider defined type as the type erasure for a provided type?	Yes, you can use a type you have defined as the baseType when constructing the&nbsp;<div>ProvidedTypeDefinition(..., baseType = Some typeof&lt;InternalData&gt; )</div><div>...</div><div>ProvidedConstructor(..., InvokeCode = (fun args -&gt; &lt;@@ new InternalData() @@&gt;, ...)</div>
+Define keyword: abstract	Indicates a method that has either no implementation in the type in which it is declared or that it is virtual and has a default implementation.&nbsp;
+Define keyword: and	Used to create mutally recursive bindings, in property declarations and with multiple constraints on generic parameters.&nbsp;
+Define keyword: as	1. Optionally used to give a name to the self-identifier in a class<div>2. Used to give a name to a whole pattern within a pattern match. ex. (a, b) as tuple1</div>
+Define keyword:&nbsp;assert	Used to verify code during debugging
+Define keyword:&nbsp;base	Used by derived classes to refer to the parent class.&nbsp;
+Define keyword:&nbsp;begin	In verbose syntax indicates start of a code block.&nbsp;
+Define keyword:&nbsp;class	In verbose syntax indicates start of a class.&nbsp;
+Define keyword:&nbsp;default	1. Indicates an implementation of an abstract method<div>2. Used together with an abstract method declaration to create a virtual method.&nbsp;</div>
+Define keyword:&nbsp;delegate	Used to declare a delegate
+Define keyword: do	1. Looping constructs<div>2. Execute expression returning unit</div>
+Define keyword:&nbsp;done	In verbose, indicates end of a block of code in a looping expression.&nbsp;
+Define keyword:&nbsp;downcast	Convert type to one that is lower in the inheritance chain
+Define keyword:&nbsp;downto	In a for expression, used when counting backward
+Define keyword:&nbsp;elif	Used in conditional branching, a short form of else if
+Define keyword:&nbsp;else	Used in conditional branching
+Define keyword:&nbsp;end	1. Types and type extensions: indicates end of a section of member definitions<div>2. Verbose: used to specify the end of a clode block that starts with the begin keyword</div>
+Define keyword:&nbsp;exception	Used to declare an exception type. ex. exception MyError of string
+What is the syntax of creating a new exception type?	exception exception-type of argument-type
+Define keyword: extern	Indicates that a declared program element is defined in another binary or assembly.&nbsp;
+Define keyword: false	Boolean literal
+Define keyword: finally	Used with try to introduce a block of code that will execute regardless of when an exception occurs.&nbsp;
+Define keyword: for	Looping construct. ex. for...to and for...in
+Define keyword: fun	Creates a lambda function
+Define keyword: global	Used to put names into the .NET top-level namespace. ex.&nbsp;<div>namespace global</div><div><br /></div><div>type someType() = ...</div>
+Define keyword: if	Conditional branching
+Define keyword: in	1. Sequence expressions ex. for...in<div>2. Verbose: separates expressions from bindings. ex. let f x = x + 1 in f 3</div>
+Define keyword: inherit	Specifies a base class or base interface in a class.&nbsp;
+Define keyword: inline	Indicates a function that should be integrated directly into calling code.&nbsp;
+Define keyword: interface	Declares and implements an interface
+Define keyword: internal	Visibility modifier - visible inside an assembly and not outside.&nbsp;
+Define keyword: lazy	Specifies a computation performed only on demand.&nbsp;
+Define keyword: let	Associates (binds) a name to a value or function.&nbsp;
+Define keyword: let!	1. Asynchronous workflows: binds a name to the result of another asynchronous workflow.&nbsp;<div>2. Or, in other workflows, binds the name to the result of workflows of the same type.&nbsp;</div>
+Define keyword: match	Branching operator based on comparing a value to a pattern.&nbsp;
+Define keyword: member	Declares a property or method on an object type.&nbsp;
+Define keyword: module	Used to associate a name with a group of related types, values and functions - logically separating them from other code.&nbsp;
+Define keyword: mutable	Used to declare a variable :-|
+Define keyword: namespace	Used to associate a name with a group of related types and modules - logically separating them from other code.&nbsp;
+Define keyword: new	1. Used to declare, define or invoke an object constructor.&nbsp;<div>2. With generic parameter constraints, used to require that a type must have a certain constructor.&nbsp;</div>
+Define keyword: not	1. Not a keyword alone.&nbsp;<div>2. Used as 'not struct' to require type constraint such that the provided type is a .NET reference type.&nbsp;</div>
+Define keyword: null	1. Indicates the absence of an object<div>2. Used in generic parameter constraints such that the provided type must support the null literal.&nbsp;</div>
+Define keyword: of	1. Used in discriminated unions to indicate the type of categories of values. ex. Foo of int<div>2. Used in delegate and exception declarations. ex. exception MyError of string</div>
+Define keyword: open	Makes the contents of the given namespace or module available without name qualification.&nbsp;
+Define keyword: or	1. Boolean condition operator, equivalent to ||<div>2. Member constraint such that a provided type must have a member that has the specified signature.&nbsp;</div>
+Define keyword: override	Used to implement a version of an abstract or virtual method that differs from the base version.&nbsp;
+Define keyword: private	Visibility modifier that restricts access to a member to code in the same type or module.&nbsp;
+Define keyword: public	Visibility modifier that makes access to a member available outside the type.&nbsp;
+Define keyword: rec	Used to indicate a function is recursive.&nbsp;
+Define keyword: return	Computational Expressions: used to indicate a value to provide as the result of a computation expression.&nbsp;
+Define keyword: return!	Computation expressions: indicates a computation expression that, when evaluated, provides the result of the containing computation expression.&nbsp;
+Define keyword: select	Used in query expressions - not actually a reserved word, it only acts like one in the appropriate context.&nbsp;
+Define keyword: static	Used to indicate a method or property is not specific to any particular class instance.&nbsp;
+Define keyword: struct	1. Used to declare a structure type<div>2. Generic parameter constraints.&nbsp;</div><div>3. Used for OCaml compatibility in module definitions</div>
+Define keyword: then	1. Conditional expressions<div>2. Used to execute expressions with side-effects within a constructor. ex.&nbsp;</div><div>new() =&nbsp;</div><div>&nbsp; &nbsp; Person("Invalid name")</div><div>&nbsp; &nbsp; then</div><div>&nbsp; &nbsp; &nbsp; &nbsp; printfn("Invalid...")</div>
+Define keyword: to	Used in for loops to indicate a range
+Define keyword: true	Boolean literal
+Define keyword: try	Introduces a block that might generate an exception. Used in combination with <b>with </b>or <b>finally</b>
+Define keyword: type	Used to declare a class, record, structure, discriminated union, enumeration type, unit of measure or type abbreviation.&nbsp;
+Define keyword: upcast	Convert to a type that is higher in the inheritance chain.&nbsp;
+Define keyword: use	Replaces let value values that require Dispose be called to free resources.&nbsp;
+Define keyword: use!	Replaces let! in asynchronous workflows and other computation expressions for values that require Dispose be called to free resources.&nbsp;
+Define keyword: val	1. Used in a signature to indicate a value<div>2. Used in a type to declare a member in limited situations.&nbsp;</div>
+Define keyword: void	Indicates the .NET void type - used for interop with other .NET languages.&nbsp;
+Define keyword: when	1. Boolean conditions on pattern matches<div>2. Introduces a constraint clause for a generic type parameter</div>
+Define keyword: while	Looping construct
+Define keyword: with	1. Used with match keyword in pattern matching expressions<div>2. Used in object expressions</div><div>3. Used in record copying expressions</div><div>4. Used in type extensions to introduce member definitions and to introduce exception handlers.&nbsp;</div>
+Define keyword: yield	In a sequence expression it produces a value.&nbsp;
+Define keyword: yield!	In a computation expression, used to append the result of a given computation expression to a collection of results for the containing computation expression.&nbsp;
+What are the reserved tokens in F# since they are OCaml?	asr<div>land</div><div>lor</div><div>lsl</div><div>lsr</div><div>lxor</div><div>mod</div><div>sig</div>
+What are the reserved tokens for F#?	atomic<div>break</div><div>checked</div><div>component</div><div>const</div><div>constraint</div><div>continue</div><div>eager</div><div>event</div><div>external</div><div>fixed</div><div>functor</div><div>method</div><div>mixin</div><div>object</div><div>parallel</div><div>process</div><div>protected</div><div>sealed</div><div>tailcall</div><div>trait</div><div>virtual</div><div>volatile</div>
