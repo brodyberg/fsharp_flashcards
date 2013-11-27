@@ -1,4 +1,4 @@
-fsharp_anki
+fsharp_flashcards
 ===========
 
 These are flashcards about the F# programming language that work within 
