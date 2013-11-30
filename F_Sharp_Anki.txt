@@ -5,9 +5,9 @@ What is the scope of let?	Limited to the portion of the containing scope (functi
 If you separate the let expression from the identifier what must you do to the expression?	Indent each line
 What is: let i, j, k = (1, 2, 3)?	Pattern that contains names.&nbsp;
 What is the let body-expression?	The expression in which names are used.&nbsp;
-Where may a let appear?	Module level, definition of a class type or in local scopes.&nbsp;
-Where must a let have a body-expression?	Local scopes and functions, not at module level or in a class type.&nbsp;
-Where are bound names usable?	After the point of definition but not at any point before the let binding appears.&nbsp;
+Where may a <code>let</code> appear?	<code>module</code> level, definition of a class type or in local scopes.&nbsp;
+Where must a <code>let</code> have a <i>body-expression</i>?	Local scopes and functions, not at <code>module</code> level or in a <code>class</code> type.&nbsp;
+Where are bound names usable?	After the point of definition but not at any point before the <code>let</code> binding appears.&nbsp;
 How do function let bindings differ from value bindings?	Function bindings include the function name, parameter list and return type.&nbsp;
 What is 'a' in let function a = a + 1	Name of the parameter
 What is 'function' in let function a = a + 1	Name of the function.&nbsp;
@@ -15,20 +15,20 @@ What kind of parameter is this: let function2 (a, b) = a + b	This parameter is a
 What does a let binding expression evaluate to?	The value of the last expression.&nbsp;
 What is being applied to the parameter: let function1 (a: int) = a + 1	Type annotation
 What does the second 'int' define: let function1 (a: int) : int = a + 1	The return type of the function.&nbsp;
-Where can a let binding not appear?	A let binding may not appear in a structure or record type.&nbsp;
+Where can a <code>let</code> binding not appear?	A <code>let</code> binding may not appear in a structure or record type.&nbsp;
 What is required of a class to contain a let binding?	A primary constructor ex. type MyClass(a) = ...
 What is the default visibility for a let binding contained within a class?	private
 What is the scope of a let within a type.&nbsp;	Scope is limited to the type (and likely also all previous scope rules apply as well).
-Where may let bindings contain explicit type parameters?	At the module level, in a type or in a computation expression.&nbsp;
+Where may <code>let</code> bindings contain explicit type parameters?	At the <code>module</code> level, in a type or in a computation expression.&nbsp;
 What can be applied to top-level let bindings of a module?	Attributes:&nbsp;<div>[&lt;Obsolete&gt;]</div><div>let function1 x y = x + y</div>
-When is a let-bound value in a module accessible to clients?	When the module is accessible.
+When is a <code>let</code>-bound value in a <code>module</code> accessible to clients?	When the <code>module</code> is accessible.
 When are let-bindings in a class accessible to clients?	Never, they are private to the class.&nbsp;
 How do clients refer to let-bound values in a module they have access to?	By using the fully-qualified name: ModuleName.FunctionName.&nbsp;
 How do clients refer to let-bound values in an accessible module without full qualification?	By using an import declaration such as: open Module1
 How does a module force clients to use fully qualified names?	By using the RequireQualifiedAccess attribute at the module level.&nbsp;
 What is a do binding used for?	A do binding is used to execute code without defining a function or value.&nbsp;
 What does the expression of a do binding return?	unit
-When is the code in a top-level (module) do binding executed?	When the module is initialized.&nbsp;
+When is the code in a top-level (<code>module</code>) <code>do</code> binding executed?	When the <code>module</code> is initialized.&nbsp;
 What is the do binding syntax?	[ attributes ]<div>[ do ]expression</div>
 What is the fun keyword for?	The fun keyword defines a lambda expression, i.e. an anonymous function.&nbsp;
 What is the fun keyword syntax?	fun parameter-list -&gt; expression
@@ -42,7 +42,7 @@ What is the purpose of struct with respect to classes?	Structure is a compact ob
 Syntax of struct declaration	[ attributes ]<div>type [accessibility-modifier] type-name =</div><div>&nbsp; &nbsp; struct</div><div>&nbsp; &nbsp; &nbsp; &nbsp; type-definition-elements</div><div>&nbsp; &nbsp; end</div><div>// or</div><div>[ attributes ]</div><div>[&lt;StructAttribute&gt;]</div><div>type [accessibility-modifier] type-name =</div><div>&nbsp; &nbsp; type-definition-elements</div>
 What may appear in the type-definition-elements for a struct?	Constructors, mutable and immutable fields and they can declare members and interface implementations.&nbsp;
 What are structs not able to do?	Participate in inheritance, use let or do-bindings and cannot recursively contain fields of their own type. They can contain reference cells that reference their own type however.&nbsp;
-What replaces let bindings in structs?	Fields must be declared using the val keyword. Val defines a keyword and type but does not allow initialization.&nbsp;
+What replaces <code>let</code> bindings in <code>struct</code>s?	Fields must be declared using the <code>val</code> keyword. <code>val</code> defines a keyword and type but does not allow initialization.&nbsp;
 What does a struct initialize val declarations to?	They are initialized to zero or null.&nbsp;
 What does a struct implicit constructor do?	Initializes val declarations to zero or null.&nbsp;
 What might a struct explicit constructor do?	It might accept values with which to initialize val declarations.&nbsp;
@@ -70,7 +70,7 @@ What is the syntax for the entrypoint?	[&lt;EntryPoint&gt;]<div>let-function-bin
 What is the entry point?	Where execution of a program formally starts.&nbsp;
 What is required for an explicit entry point?	Correct syntax, EntryPoint attribute, and it must be the last function in the last compiled file i.e. the last file in the project to compile.&nbsp;
 What is the signature of the entry point function?	string array -&gt; int
-Where is the implicit entry point?	When there is no EntryPoint attribute that explicitly indicates the entry point, the top level bindings in the last file to be compiled are used as the entry point.&nbsp;
+Where is the implicit entry point?	When there is no <code>[&lt;EntryPoint&gt;]</code> attribute that explicitly indicates the entry point, the top level bindings in the last file to be compiled are used as the entry point.&nbsp;
 What is a tuple?	A tuple is a grouping of unnamed but ordered values, possibly of different types.&nbsp;
 What is tuple syntax?	( element, ... , element)
 How does one use matching to access items in a tuple?	let print tuple =<div>&nbsp; &nbsp; match tuple1 with</div><div>&nbsp; &nbsp; &nbsp; &nbsp;| (a, b) -&gt; printfn "Pair %A %A" a b</div>
@@ -82,9 +82,9 @@ What are the three types of Active Patterns?	Single-case, partial-case and multi
 What do single-case Active Patterns do?	Convert the input into a new value.&nbsp;
 What do partial-case Active Patterns do?	Partial-case Active Patterns carve out an incomplete piece of the input space (such as only matching against strings that contain the letter 'x'.&nbsp;
 What do multi-case Active Patterns do?	Multi-case Active Patterns partition the input space into one of several values such as partitioning all possible integers into evens, odds or zero.&nbsp;
-What operator are sigle-case Active Pattern function names bound within?	Banana Clips: (| activePatternName |)
+What operator are sigle-case Active Pattern function names bound within?	Banana Clips: <code>(| activePatternName |)</code>
 What does the following define: let (|FileExtension|) filePath = Path.GetExtension(filePath)	Single-case Active Pattern.&nbsp;
-What operator are partial Active Patterns enclosed within?	(|<font color="#0000ff">ident</font>|_|)
+What operator are partial Active Patterns enclosed within?	<code>(|ident|_|)</code>
 What do partial Active Pattern functions return?	The option type: Some('a) or None.&nbsp;
 What is the operator for block comments?	(* ... *)
 What is the operator for end of line comment?	//
@@ -98,7 +98,7 @@ Name this pattern: literal	Constant pattern.&nbsp;
 Name this pattern: ident	Variable pattern.&nbsp;
 Name this pattern: (pat, ..., pat)	Tuple pattern.&nbsp;
 Name this pattern: [ pat; ...; pat; ]	List pattern.&nbsp;
-Name this pattern: [| pat; ...; pat |]	Array pattern.&nbsp;
+Name this pattern: <br>[| pat; ...; pat |]	Array pattern.&nbsp;
 Name this pattern: { id=pat; ...; id=pat }	Record pattern.&nbsp;
 Name this pattern: id(pat, ..., pat)	Union case pattern.&nbsp;
 Name this pattern: pat | pat	"Or" pattern.&nbsp;
@@ -125,14 +125,14 @@ What does the return keyword do?	Nothing, there isn't one. Expressions return th
 What does the if keyword allow?	The if keyword allows for the branching of control flow in a function.&nbsp;
 What is the syntax of the if keyword?	if <i>boolean-expresssion </i>then expression1 [ else expression2 ]
 What are the implications of if...then...else being an expression?	1. It returns a value<div>2. Each branch must return the same type</div><div>3. If there is no explicit else branch it's type is unit</div><div>4. Because of 3, if the <i>then</i>&nbsp;branch has any other type other than unit there must be an else branch with the same return type.&nbsp;</div>
-What must the return type of an if with no corresponding else be?	A single if with no corresponding else must return unit.&nbsp;
+What must the return type of an <code>if</code> with no corresponding <code>else</code> be?	A single <code>if</code> with no corresponding <code>else</code> must return <code>unit</code>.&nbsp;
 Describe this core type: unit	Unit, the unit value, example: ()
 Describe these core types: int, float, etc.&nbsp;	Concrete types, 42, 3.14 etc.&nbsp;
 Describe this core type: 'a	Generic type, a generic (free) type
 Describe this core type: 'a -&gt; 'b&nbsp;	Function type, a function returning a value. Ex: fun x -&gt; x + 1
 Describe this core type: 'a * 'b&nbsp;	Tuple type, an ordered grouping of pairs. ex. ("eggs", "ham")
 Describe this core type: 'a list	List type, a list of values. ex: [1; 2; 3], [1 .. 3]
-Describe this core type: 'a option	Option type, an optional value. ex. Some(3), None.&nbsp;
+Describe this core type:<br> 'a option	Option type, an optional value. ex. Some(3), None.&nbsp;
 What does unit represent?	Nothing of consequence. &nbsp;
 What does the ignore function do?	The ignore function swallows the return type of a function if you want to return unit.&nbsp;
 What is this operator: ..	.. is the list range operator.&nbsp;
@@ -141,11 +141,11 @@ What does the following list range expression produce? let x = [0 .. 10 .. 50]	v
 At the simplest level what is list comprehension syntax?	At the simplest level list comprehension syntax is code in brackets. [ expression ]
 How long will the code in the body of a list comprehension be executed?	Until it terminates.&nbsp;
 From the body of a list comprehension, what makes up elements returned by it?	Elements are returned from the list comprehension using the yield keyword.&nbsp;
-What resource is consumed during list comprehension generation?	The list is fully generated in memory when created. If you find yourself creating lists with thousands of elements consider using a seq&lt;_&gt;.&nbsp;
+What resource is consumed during list comprehension generation?	The list is fully generated in memory when created. If you find yourself creating lists with thousands of elements consider using a <code>seq&lt;_&gt;.&nbsp;</code>
 How does -&gt; simplify list comprehensions with for loops?	Rather than:&nbsp;<div>let multiplesOf x = [ for i in 1 .. 10 do yield x * i ]</div><div>you can do:&nbsp;</div><div>let multiplesOf x = [ for i in 1 .. 10 -&gt; x * i ]</div>
 What is the overall point of list comprehensions?	List comprehensions enable you to quickly and concisely generate lists of data.&nbsp;
 What are <i>aggregate operators</i> with respect to lists?	A set of powerful functions that are useful for any collection of values.&nbsp;
-Which List aggregate operator is this: ('a -&gt; 'b) -&gt; 'a list -&gt; 'b list	This is List.map
+Which List aggregate operator is this: <code>('a -&gt; 'b) -&gt; 'a list -&gt; 'b list</code>	This is <code>List.map</code>
 What does the List aggregate operator map do?	Map is a projection operation that creates a new list based on a provided function.&nbsp;
 What does the List aggregate operation fold do?	Fold distills a list of values into a single value.&nbsp;
 What are the two List aggregate operators for fold?	List.reduce and List.fold.&nbsp;<div>Reduce: ('a -&gt; 'a -&gt; 'a) -&gt; 'a list -&gt; 'a</div><div>Fold: ('acc -&gt; 'b -&gt; 'acc) -&gt; 'acc -&gt; 'b list -&gt; 'acc</div>
@@ -161,7 +161,7 @@ What is the <i>anonymous</i> module?	The <i>anonymous</i> module is where, by de
 How does one explicitly create a module?	One explicitly creates a module by using the module keyword at the top of a source file.&nbsp;
 Does F# support nested modules?	Yes, F# supports nested modules.&nbsp;
 How does one declare a nested module?	To declare a nested module, use the module keyword followed by the name of the module and an equals sign. Nested modules must be indented to disambiguate them from the top-level module.&nbsp;
-What must be done to disambiguate a nested module from the top-level module?	Nested modules must be indented to be disambiguated from the top-level module.&nbsp;
+What must be done to disambiguate a nested <code>module</code> from the top-level <code>module</code>?	Nested modules must be indented to be disambiguated from the top-level <code>module</code>.&nbsp;
 What is the alternative to modules?	Namespaces are the alternative to modules.&nbsp;
 Namespaces can do just what modules can with which single exception?	Namespaces cannot contain values, they can only contain types.&nbsp;
 Can namespaces be nested?	Namespaces can be nested. They are nested not using whitespace like modules, but rather with dotting. So, PlayingCards.Poker would be a namespace nested within PlayingCards.&nbsp;
@@ -170,7 +170,7 @@ Name the term for when a function somehow changes the state of a program.&nbsp;	
 By default, how changeable the names of things in a functional language?&nbsp;	Not changeable, they are immutable.&nbsp;
 What is the general benefit of immutability?	Immutability limits unintended side-effects - immutable values help you write safer code because you can't screw up what you can't change.&nbsp;
 To what value must all standalone expressions evaluate to?	Standalone expressions must always evaluate to the unit value.&nbsp;
-What's a common error interfacing with .NET libraries due to currying?	.NET libraries like System.IO.StringReader have methods like ReadLine which require unit arguments, so they must be called as ReadLine(). Calling as ReadLine compiles, but is an error at runtime.&nbsp;
+What's a common error interfacing with .NET libraries due to currying?	.NET libraries like <code>System.IO.StringReader</code> have methods like <code>ReadLine</code> which require <code>unit</code> arguments, so they must be called as <code>ReadLine()</code>. Calling as <code>ReadLine</code> compiles, but is an error at runtime.&nbsp;
 What is this operator named? |&gt;	The |&gt; is the pipe operator.&nbsp;
 What is the signature of this operator? |&gt;	let (|&gt;) x f = f x<div>All this does is allow you to put the function argument in front of the function rather than after. That's all.&nbsp;</div>
 What is the signature of this operator? &lt;|	This is the reverse pipe operator and its signature is: let (&lt;|) f x = f x<div>It reduces the need for parentheses and can make the code cleaner.</div><div>printf "%i" 1+2 // error</div><div>printf "%i" (1+2) // using parens</div><div>printf "%i" &lt;| 1 + 2 // using reverse pipe</div>
@@ -178,7 +178,7 @@ What is the idea of partial function application?	The idea of partial applicatio
 What makes a significant difference for the ease of use of partial application?	The order of parameters makes a big difference in the ease of use of partial application.&nbsp;
 What are the guidelines to design for better partial application?	1. Put earlier: parameters more likely to be static.&nbsp;<div>2. Put last: the datastructure or collection (or most varying argument)</div><div>3. For well-known operations (ex. subtract) put in the expected order.&nbsp;</div>
 What change makes .NET base-class library functions more idiomatic in F#?	Wrapping .NET base-class library functions for partial application makes them more idiomatic in F#.&nbsp;<div>let replace oldStr newStr (s:string) =&nbsp;</div><div>&nbsp; s.Replace(oldValue=oldStr, newValue=newStr)</div>
-What might we call a monoid in a programming context today?	We might call a monoid ICombinable.&nbsp;
+What might we call a monoid in a programming context today?	We might call a monoid <code>ICombinable</code>.&nbsp;
 In programming terms is there a connection between monad and monoid?	No, there is no programming connection but there is a mathematical connection.&nbsp;
 What are the three requirements for something to be a monoid?	<div>You start with a bunch of things <i>and</i>&nbsp;some way of combining them two at a time.</div>1. Closure: The result of combining things is always another one of the things.&nbsp;<div>2. Associativity: When combining more than two things, which pairwise combination you do first doesn't matter.&nbsp;</div><div>3. Identity Element: There is a special thing called "zero" such that when you combine any thing with "zero" you get the original thing back.&nbsp;</div>
 What is the Closure rule for monoids?	The closure rule states that the result of combining two things is always another one of the things.&nbsp; ('a -> 'a -> 'a)
@@ -191,7 +191,7 @@ What is the practical benefit of the closure rule for monoids?	The practical ben
 What is the practical benefit of the monoid rule of Associativity?	When pairwise operations can be conducted in any order it opens up the option to do:&nbsp;<div>- Divide and Conquer Algorithms</div><div>- Parallelization</div><div>- Incrementalism</div>
 In terms of design patterns, what is a monoid?	A monoid is a way to describe an aggregation pattern. We have a list of things, we have some way of combining them and we get a single aggregated object back at the end. Or, in F# terms:&nbsp;<div>Monoid Aggregation: 'T list -&gt; 'T</div>
 What are some conversational clues you are dealing with a monoid?	When you are designing code and start using terms like "sum", "product", "composition" or "concatenation."&nbsp;
-When are lazy computations evaluated?	Lazy computations are evaluated when the result is needed.
+When are <code>lazy</code> computations evaluated?	<code>lazy</code> computations are evaluated when the result is needed.
 What is the syntax for a lazy computation?	let identifier = lazy ( expression )
 How does one cause a lazy computation to be performed?	To force the computation to be performed you call the method Force.&nbsp;<div>let x = 10</div><div>let result = lazy (x + 10)</div><div>printfn "%d" (result.Force())</div>
 What do subsequent calls to Lazy Force return?	Subsequent calls to Force return the same result and do not execute any code.&nbsp;
@@ -201,9 +201,9 @@ When are individual elements of a sequence computed?	Individual elements of a se
 What is a primary difference between lists and sequences?	Lists have all of their members in memory, while sequences compute each individual elements only as required.&nbsp;
 What is the F# type for sequences?	The F# type for sequences is seq&lt;'T&gt; which is an alias for IEnumerable&lt;T&gt;. Therefore any .NET Framework type that implements IEnumerable can be used as a sequence.&nbsp;
 What is the .NET type backing seq&lt;'T&gt;?	The .NET backing type is IEnumerable&lt;T&gt;
-What is a sequence expression?	A sequence expression is an expression that evaluates to a sequence. The simplest form specifies a range ex. seq { 1 .. 5 }
-When does one use yield in a sequence expression?	One uses yield when each iteration is expected to generate a single element of the sequence.&nbsp;
-When does one use yield! in a sequence expression?	One uses yield! in a sequence expression when each iteration is expected to produce a sequence of elements. Elements generated from each iteration are concatenated to produce the final sequence.&nbsp;
+What is a sequence expression?	A sequence expression is an expression that evaluates to a sequence. The simplest form specifies a range ex. <br>seq { 1 .. 5 }
+When does one use <code>yield</code> in a sequence expression?	One uses <code>yield</code> when each iteration is expected to generate a single element of the sequence.&nbsp;
+When does one use <code>yield!</code> in a sequence expression?	One uses <code>yield!</code> in a sequence expression when each iteration is expected to produce a sequence of elements. Elements generated from each iteration are concatenated to produce the final sequence.&nbsp;
 What is happening in the following code:&nbsp;<div>let rec inorder tree =</div><pre>    seq {<br>      match tree with<br>          | Tree(x, left, right) -&gt; <br>              yield! inorder left<br>              yield x<br>              yield! inorder right<br>          | Leaf x -&gt; yield x<br>    }<br></pre>	This code is a sequence expression that uses both yield to produce single elements and yield! to produce lists of elements. It does this by matching on a discriminated union.&nbsp;
 What feature allows for the creation of ad-hoc types?	Type abbreviations, such as:&nbsp;<div>type NodeList = List&lt;node&gt; allow you to create ad-hoc types.&nbsp;</div>
 What is a fundamental limitation of type systems that TypeProviders address?	TypeProviders address the fundamental limitation of type systems in that type systems only describe the shape of data <i>within</i>&nbsp;programs.&nbsp;
@@ -212,8 +212,8 @@ At what point during code lifetime does a TypeProvider generate wrappers?	Wrappe
 Where is type information generated by TypeProviders stored at runtime?	At compile time the type information from the TypeProvider will be baked into your program - not into a separate library.&nbsp;
 How do TypeProviders enable scaling beyond any particular IDE?	Traditionally IDEs implemented TypeProvider-like functionality, but because developers can implement their own they are not limited by or to any particular IDE.&nbsp;
 With respect to SQL, what does an SQL TypeProvider replace in a project?	An SQL TypeProvider takes the place of an ORM (Object relational mapping).&nbsp;
-What type of connection does a SqlDataConnection expect?	A SqlDataConnection expects a <i>live</i>&nbsp;connection - but you can generate type information with a DbmlFile Provider as a stand-in.&nbsp;
-A DbmlFile provider generates the same type information as which built in provider?	A DbmlFile provider generates the same type information as the SqlDataConnection type provider.&nbsp;
+What type of connection does a <code>SqlDataConnection</code> expect?	A <code>SqlDataConnection</code> expects a <i>live</i>&nbsp;connection - but you can generate type information with a <code>DbmlFile</code> Provider as a stand-in.&nbsp;
+A DbmlFile provider generates the same type information as which built in provider?	<div align="left">A DbmlFile provider generates the same type information as the SqlDataConnection type provider.</div>
 Rather than a live connection to a Sql database, on what does a DbmlFile provider operate?	A Dbml provider operates on a schema file describing a database's structure.&nbsp;
 Before writing a new TypeProvider, what is the first question to ask about the information source?	Does the information source have a schema and what is the entropy of that schema? Will it change? Will it change during coding/between coding sessions/program execution? TypeProviders are best for stable schemas.&nbsp;
 Describe the Option.get&lt;'a&gt; function.	Gets the value associated with the option.&nbsp;<div>Signature:&nbsp;</div><div>get : 'a option -&gt; 'a</div><div>Usage:&nbsp;</div><div>get option</div><div>Throws ArgumentException when option is None.&nbsp;</div>
@@ -237,25 +237,25 @@ What is the syntax for type extension?	type typename with<div>&nbsp; &nbsp; memb
 What are the two forms of type extension?	1) Intrinsic extension is an extension that appears in the same namespace or module, in the same source file and assembly as the type being extended.&nbsp;<div>2) Optional extension appears outside the original module, namespace or assembly of the type being extended.&nbsp;</div>
 Of the two forms of type extension, which appears on the type when it is examined by reflection?	Intrinsic extensions appear on the type when the type is examined by reflection, optional extensions do not.&nbsp;
 Of the two forms of type extension, which does not appear on the type when it is examined by reflection?	Optional extensions do not appear on the type when the type is examined by reflection, while intrinsic extensions do appear on the type under reflection.&nbsp;
-When are optional extensions in scope?	Optional extensions are only in scope when the module containing that extension is open.&nbsp;
+When are optional extensions in scope?	Optional extensions are only in scope when the <code>module</code> containing that extension is open.&nbsp;
 What is the syntax for creating a type extension for a type abbreviation.&nbsp;	There isn't one, you can't create a type extension for a type abbreviation.&nbsp;
 What types of members are allowed for type extensions?	Members may be static or instance i.e. static or instance properties or static or instance methods.&nbsp;
 How are optional extension members compiled?	Optional extension members are compiled to static members for which the object instance is passed implicitly as the first parameter.&nbsp;
 How do instance members defined as type extensions behave at runtime?	As instance members, although they are compiled to static members behave as instance members at runtime.&nbsp;
-What type of extension methods are not allowed as type extensions?	Extension methods may not be virtual or abstract.&nbsp;
+What type of extension methods are not allowed as type extensions?	Extension methods may not be <code>virtual</code> or <code>abstract</code>.&nbsp;
 Can extension methods overload?	Extension methods may overload methods of the same name.&nbsp;
 To which method does the compiler give preference in the case of an ambiguous call between a type method and extension method?	The compiler gives preference to non-extension methods in the case of an ambiguous call.&nbsp;
 How might ambiguity occur in client code when dealing with extension members for a particular type?	Ambiguity occurs if a client opens two different scopes that define the same member names.&nbsp;
-Where can you overload arithmetic operators?	You can overload arithmetic operators at the class, record type or global level.&nbsp;
+Where can you overload arithmetic operators?	You can overload arithmetic operators at the <code>class</code>, record type or global level.&nbsp;
 What is the syntax for overloading an arithmetic operator as a class or record member?	static member (operator-symbols) (parameter-list) =<div>&nbsp; &nbsp; method-body</div>
 What is the syntax for overloading arithmetic operators at the global level?	let [inline] (operator-symbols) parameter-list =<div>&nbsp; &nbsp; function-body</div>
 Operator overloads for classes and records must be of what type of method?	Operator overloads for classes and records must be methods of static type.&nbsp;
-What symbol indicates an operator in an operator overload declaration is unary rather than binary?	The tilde (~) symbol indicates that an operator is unary rather than binary.&nbsp;<div>static member (~-) (v : Vector)</div>
+What symbol indicates an operator in an operator overload declaration is unary rather than binary?	The tilde (<code>~</code>) symbol indicates that an operator is unary rather than binary.&nbsp;<div><code>static member (~-) (v : Vector)</code></div>
 What is the inline modifier used for?	The inline modifier can be applied to functions to be integrated directly into the calling code.&nbsp;
-When must you use the inline modifier for a function?	When a function is parameterized by static type parameters you must inline the function. There is no such restriction for ordinary generic type parameters.&nbsp;
-What must you do before using the inline function modifier?	You should try all other optimization techniques and measure performance before using the inline function modifier.&nbsp;
+When must you use the <code>inline</code> modifier for a function?	When a function is parameterized by static type parameters you must <code>inline</code> the function. There is no such restriction for ordinary generic type parameters.&nbsp;
+What must you do before using the <code>inline</code> function modifier?	You should try all other optimization techniques and measure performance before using the <code>inline</code> function modifier.&nbsp;
 What are the risks of using the inline function modifier?	Overuse of the inline function modifier can cause your code to be less resistant to changes in compiler optimizations and the implementation of library functions. They do not always result in improved performance.&nbsp;
-What type of function cannot have statically resolved type parameters?	Non-inline functions may not have statically resolved type parameters.&nbsp;
+What type of function cannot have statically resolved type parameters?	Non-<code>inline</code> functions may not have statically resolved type parameters.&nbsp;
 At runtime, what does the presence of the inline function modifier affect?	The presence of inline affects type inference. Inline functions can have statically-resolved type parameters.&nbsp;
 What is the signature of this function:&nbsp;<div>let inline printAsFloatingPoint number =&nbsp;</div><div>&nbsp; &nbsp; printfn "%f" (float number)</div>	^a -&gt; unit when ^a : (static member op_Explicit : ^a -&gt; float)
 What is class constructor syntax?	new (argument-list) = constructor body
@@ -277,7 +277,7 @@ What does the body of a class primary constructor consist of?	The body of a clas
 How do you add additional constructors to a class?	You can add additional constructors to a class using the new keyword.&nbsp;
 What must the body of a new class constructor invoke?	The body of a new constructor must invoke the primary constructor.&nbsp;
 What is the following code doing?<div>type MyClass1(x: int, y: int) =</div><div>&nbsp; &nbsp; new() = MyClass1(0, 0)</div>	This is an additional constructor invoking the primary constructor.&nbsp;
-When do let and do bindings run when within a class definition?	Let and do bindings in a class definition run whenever a class instance is created.&nbsp;
+When do <code>let</code> and <code>do</code> bindings run when within a <code>class</code> definition?	<code>let</code> and <code>do</code> bindings in a <code>class</code> definition run whenever a <code>class</code><code> instance is created.&nbsp;</code>
 In a class definition, what is a let binding that is a function compiled into?	A let binding that is a function is compiled into a member.&nbsp;
 In a class definition, what is a let binding that is a value compiled into?	If a let binding is a value that is not used in any function or member it is compiled into a variable local to the constructor.&nbsp;
 What is a type abbreviation?	A type abbreviation is an alias or alternate name for a type. ex. type sizeType = uint32
@@ -313,8 +313,8 @@ Define Symbol or Operator:&nbsp;,	1. Separates elements of a tuple<div>2. Separa
 Define Symbol or Operator: -&gt;&nbsp;	1. In functions, delimits arguments and return values<div>2. Yields an expression in sequence expressions (replaces do yield)</div><div>3. Used in match expressions</div>
 Define Symbol or Operator: .	1. Member access. Separates individual names from fully qualified name.&nbsp;<div>2. Specifies a decimal point for floats</div>
 Define Symbol or Operator: ..	Range operator.&nbsp;
-Define Symbol or Operator: .. ..&nbsp;	Range operator with increment. ex. start..step..stop
-Define Symbol or Operator: .[...]	Accesses an array element
+Define Symbol or Operator:<br> .. ..&nbsp;	Range operator with increment. ex. start..step..stop
+Define Symbol or Operator: <br>.[...]	Accesses an array element
 Define Symbol or Operator: /	1. Division, divides numerator from denominator<div>2. Used in units of measure types</div>
 Define Symbol or Operator: /?	Division when right side is nullable type
 Define Symbol or Operator: //	Single line comment
@@ -375,19 +375,19 @@ What are <i>code quotations</i>&nbsp;as a language feature?	<i>Code quotations</
 What do code quotations specifically generate that are then manipulated?	Code quotations generate abstract syntax trees which can then be traversed and processed.&nbsp;
 What is an example of why a code expression generated abstract syntax tree would be traversed?	You could traverse the tree to generate F# code or generate code in some other language.&nbsp;
 What is a <i>quoted expression</i>?	A <i>quoted expression</i>&nbsp;is an F# expression in your code that is delimited in such a way that it is not compiled as part of your program but instead compiled into an object that represents an F# expression.&nbsp;
-What are the two ways you can mark a <i>quoted expression?</i>	You can either mark a <i>quoted expression </i>with or without type information. &lt;@...@&gt; or &lt;@@...@@&gt;
-What type of quoted expression is this:&nbsp;<div>let expr : Expr&lt;int&gt; = &lt;@ 1 + 1 @&gt;</div>	This is a typed quoted expression.&nbsp;
-What type of quoted expression is this:&nbsp;<div>let expr : Expr = &lt;@@ 1 + 1 @@&gt;</div>	This is an untyped quoted expression.&nbsp;
+What are the two ways you can mark a <i>quoted expression?</i>	You can either mark a <i>quoted expression </i>with or without type information. <br>With: &lt;@...@&gt; <br>Without: &lt;@@...@@&gt;
+What type of quoted expression is this:&nbsp;<div><code>let expr : Expr&lt;int&gt; = &lt;@ 1 + 1 @&gt;</code></div>	This is a typed quoted expression.&nbsp;
+What type of quoted expression is this:&nbsp;<div><code>let expr : Expr = &lt;@@ 1 + 1 @@&gt;</code></div>	This is an untyped quoted expression.&nbsp;
 To use code quotations which namespace must be opened?	open Microsoft.FSharp.Quotations
 What makes traversing a large expression tree built by code expressions faster?	Traversing a large expression tree is faster if you do not include type information.&nbsp;
 What is the resulting type of an expression quoted with the typed symbols?	The resulting type is Expr&lt;'a&gt; where 'a is determined by F# type inference.&nbsp;
 What is the resulting type of a quoted expression without type information?	The resulting type of an untyped quoted expression is the non-generic type Expr.&nbsp;
 How do you get the untyped Expr from a typed Expr?	By calling the Raw property on Expr&lt;'a&gt;
-A valid code quotation creates an expression with what property?	A valid code quotation creates an expression that is <i>complete</i>.&nbsp;<div>Invalid: &lt;@ let f x = x + 1 @&gt;</div><div>Valid: &lt;@ let f x = x + 1 in f 10 @&gt;</div>
+A valid code quotation creates an expression with what property?	A valid code quotation creates an expression that is <i>complete</i>.&nbsp;<div>Incomplete: <br>&lt;@ let f x = x + 1 @&gt;</div><div>Complete: <br>&lt;@ let f x = x + 1 in f 10 @&gt;</div>
 How valid is this code quotation?<div>&lt;@ let name x = x + "foo" @&gt;</div>	Invalid, the code quotation does not create a complete expression.&nbsp;
 How valid is this code quotation?<div>&lt;@ let name x = x + "bar" in name "ba" @&gt;</div>	Valid, the code quotation creates a complete expression.
-What provides a variety of methods to generate F# expression objects programmatically without using quoted expressions?	The Expr class has many static methods for generating quoted expressions programmatically.&nbsp;
-What's a powerful technique to read through the abstract syntax tree generated by a code quotation?	Active Patterns are a powerful technique and many are provided in Microsoft.FSharp.Quotations.Patterns | DerivedPatterns
+What provides a variety of methods to generate F# expression objects programmatically without using quoted expressions?	The <code>Expr</code> class has many static methods for generating quoted expressions programmatically.&nbsp;
+What's a powerful technique to read through the abstract syntax tree generated by a code quotation?	Active Patterns are a powerful technique and many are provided in <code>Microsoft.FSharp.Quotations</code><br /><code>.Patterns | DerivedPatterns</code>
 What is the syntax for a complete active pattern definition?	let (|identifier1|identifier2|...|identifier7|) [ arguments ] = expression
 What is the syntax for a partial active pattern definition?	let (|identifier|_|) [ arguments ] = expression
 What do the identifiers of a complete active pattern represent?	The identifiers to a complete active pattern represent names for subsets of the set of all values of the arguments.&nbsp;
@@ -395,12 +395,12 @@ What does the expression of a complete active pattern do?	The expression for a c
 What is the name of a function created by a let binding with banana clips?	A function created by a let binding with banana clips is known as an <i>active recognizer</i>.&nbsp;
 What is the definition of (|RGB|) here?<div>let printRGB (col: System.Drawing.Color) =&nbsp;</div><div>match col with</div><div>| RGB(r,g,b) -&gt; printfn " r: %d g: %d b: %d" r g b</div>	let (|RGB|) (col : System.Drawing.Color) =&nbsp;<div>&nbsp; &nbsp; (col.R, col.G, col.B)</div>
 How many arguments do active patterns always take?	They always take at least one argument - for the item being matched.&nbsp;
-What is a much more abstract way to traverse an F# expression tree than Quotations.Patterns or DerivedPatterns?	Microsoft.FSharp.Quotations.ExprShape allows you to match across shapes such as ShapeVar, ShapeLambda or ShapeCombination.&nbsp;
+What is a much more abstract way to traverse an F# expression tree than Quotations.Patterns or DerivedPatterns?	Microsoft.FSharp.<br>Quotations.ExprShape allows you to match across shapes such as ShapeVar, ShapeLambda or ShapeCombination.&nbsp;
 What are the splicing operators % and %% about?	The splicing operators allow one to splice typed and untyped information straight into a code expression - particularly useful for splicing in values returned from an active pattern match expression.&nbsp;
 What is an erased type?	A type that when used is "erased" to type obj and all uses of the type will appear as type obj in compiled code.&nbsp;
 What is used to subvert type erasure?	With all uses of type erasure, you can use explicit boxing and unboxing and casting to subvert the erased types.&nbsp;
 What could result from subverting an erased type by casting?	A cast exception may result when attempting to cast to an invalid type from an erased type.&nbsp;
-An erased type has which .NET type?	None, an erased type has no real .NET type. This means you can't do accurate reflection over the type.&nbsp;
+An erased type has which .NET type?	None - not even object. An erased type has no real .NET type. This means you can't do accurate reflection over the type.&nbsp;
 Can you define erased types in F#?	No, you can't define erased types in F# itself - only provided types may be erased.&nbsp;
 What is the exact opposite operation of type erasure?	Type inference is the exact opposite operation of type erasure.&nbsp;
 An implicitly typed term is well-typed iff what?	An implicitly typed term is well-typed iff it is the erasure of a well-typed explicitly typed lambda term.&nbsp;
@@ -412,7 +412,7 @@ What is the erasure of a provided type with respect to compiled .NET code?	The e
 What is the erasure of a provided type with respect to the object hierarchy?	The erasure of a provided class type is always the first non-erased base type in the inheritance chain of the type.&nbsp;
 What is the erasure of a provided type when the provided type is an interface?	The erasure of a provided erased interface type is always Object.&nbsp;
 All representations of a provided type must be compatible with what?	All representations of a provided type must be compatible with the erasure of the provided type.&nbsp;
-When you establish a provided type with ProvidedTypeDefinition what does baseType specify?	The baseType parameter specifies what the provided type erasure will be - aka what the provided type will look like in compiled code.&nbsp;
+When you establish a provided type with <code>ProvidedTypeDefinition</code> what does <code>baseType</code> parameter specify?	The <code>baseType</code> parameter specifies what the provided type erasure will be - aka what the provided type will look like in compiled code.&nbsp;
 What is this code specifying with respect to representation of provided objects?<div><br /></div><div><div>&nbsp;ProvidedConstructor(parameters = [],&nbsp;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;InvokeCode= (fun args -&gt; &lt;@@ (new List&lt;string&gt;()) :&gt; obj @@&gt;))</div></div>	This code is specifying a representation of provided objects in terms of a list of strings.&nbsp;
 What is the following specifying with respect to provided type representations?<div><br /></div><div>type InternalData() =&nbsp;</div><div>&nbsp; &nbsp;let data = List&lt;string&gt;()</div><div>&nbsp; &nbsp;member x.RuntimeCall() = data.Count</div><div><br /></div><div>ProvidedConstructor(parameters = [],</div><div>&nbsp; &nbsp;InvokeCode = (fun args -&gt; &lt;@@ (new InternalData()) :&gt; obj @@&gt;))&nbsp;</div>	InternalData is defined in the type provider and is used at runtime to form the representation along with one or more runtime operations. Provided members can then construct instances of this object type.&nbsp;
 Can you use a type provider defined type as the type erasure for a provided type?	Yes, you can use a type you have defined as the baseType when constructing the&nbsp;<div>ProvidedTypeDefinition(..., baseType = Some typeof&lt;InternalData&gt; )</div><div>...</div><div>ProvidedConstructor(..., InvokeCode = (fun args -&gt; &lt;@@ new InternalData() @@&gt;, ...)</div>
