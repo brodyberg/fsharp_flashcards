@@ -112,100 +112,90 @@ What kind of list is this:<br /><code>[ expr..expr ]</code>	Range list.&nbsp;
 What kind of list is this:<br /><code>[ comp-expr ]</code>	Generated list.&nbsp;
 What list operation is this:<br /><code>expr :: expr</code>	List cons.&nbsp;
 What list operation is this:<br /><code>expr @ expr</code>	List append.&nbsp;
-What is this operator: &amp;&amp;	Boolean and.&nbsp;
-What is this operator: ||	Boolean or
-What is this operator: not	Boolean not.&nbsp;
 Does F# use short-circuit boolean evaluation?	Yes, F# uses short-circuit boolean evaluation.&nbsp;
-What does this comparison operator do: &lt;	Less than
-What does this comparison operator do: &gt;	Greater than
-What does this comparison operator do: &gt;=	Greater than or equal.&nbsp;
-What does this comparison operator do: =	Equal to
-What does this comparison operator do: compare	Compares two values, returning -1, 0 or 1
 What does the return keyword do?	Nothing, there isn't one. Expressions return the value of the last subexpression to be evaluated.&nbsp;
-What does the if keyword allow?	The if keyword allows for the branching of control flow in a function.&nbsp;
-What is the syntax of the if keyword?	if <i>boolean-expresssion </i>then expression1 [ else expression2 ]
-What are the implications of if...then...else being an expression?	1. It returns a value<div>2. Each branch must return the same type</div><div>3. If there is no explicit else branch it's type is unit</div><div>4. Because of 3, if the <i>then</i>&nbsp;branch has any other type other than unit there must be an else branch with the same return type.&nbsp;</div>
+What does the <code>if</code> keyword allow?	The <code>if</code> keyword allows for the branching of control flow in a function.&nbsp;
+What is the syntax of the <code>if</code> keyword?	<code>if boolean-expresssion then expression1 [ else expression2 ]</code>
+What are the implications of <code>if...then...else</code> being an expression?	1. It returns a value<div>2. Each branch must return the same type</div><div>3. If there is no explicit else branch it's type is <code>unit</code></div><div>4. Because of 3, if the <code>then</code>&nbsp;branch has any other type other than <code>unit</code> there must be an <code>else</code> branch with the same return type.&nbsp;</div>
 What must the return type of an <code>if</code> with no corresponding <code>else</code> be?	A single <code>if</code> with no corresponding <code>else</code> must return <code>unit</code>.&nbsp;
-Describe this core type: unit	Unit, the unit value, example: ()
-Describe these core types: int, float, etc.&nbsp;	Concrete types, 42, 3.14 etc.&nbsp;
-Describe this core type: 'a	Generic type, a generic (free) type
-Describe this core type: 'a -&gt; 'b&nbsp;	Function type, a function returning a value. Ex: fun x -&gt; x + 1
-Describe this core type: 'a * 'b&nbsp;	Tuple type, an ordered grouping of pairs. ex. ("eggs", "ham")
-Describe this core type: 'a list	List type, a list of values. ex: [1; 2; 3], [1 .. 3]
-Describe this core type:<br> 'a option	Option type, an optional value. ex. Some(3), None.&nbsp;
-What does unit represent?	Nothing of consequence. &nbsp;
-What does the ignore function do?	The ignore function swallows the return type of a function if you want to return unit.&nbsp;
-What is this operator: ..	.. is the list range operator.&nbsp;
-What is list range expression syntax?	[ start .. step .. stop ]
-What does the following list range expression produce? let x = [0 .. 10 .. 50]	val x : int list = [0; 10; 20; 30; 40; 50; ]
-At the simplest level what is list comprehension syntax?	At the simplest level list comprehension syntax is code in brackets. [ expression ]
+Describe this core type: <code>unit</code>	Unit, the unit value, example: <code>()</code>
+Describe these core types: <code>int</code>, <code>float</code>, etc.&nbsp;	Concrete types, 42, 3.14 etc.&nbsp;
+Describe this core type: <code>'a</code>	Generic type, a generic (free) type
+Describe this core type: <code>'a -&gt; 'b</code>&nbsp;	Function type, a function returning a value. Ex: <br /><br><code>fun x -&gt; x + 1</code>
+Describe this core type: <code>'a * 'b</code>&nbsp;	Tuple type, an ordered grouping of pairs. ex. ("eggs", "ham")
+Describe this core type: <code>'a list</code>	List type, a list of values. ex: <code>[1; 2; 3], [1 .. 3]</code>
+Describe this core type:<br /> <code>'a option</code>	Option type, an optional value. ex. <code>Some(3)</code>, <code>None</code>.&nbsp;
+What does <code>unit</code> represent?	Nothing of consequence. &nbsp;
+What does the <code>ignore</code> function do?	The <code>ignore</code> function swallows the return type of a function if you want to return unit.&nbsp;
+What is list range expression syntax?	<code>[ start .. step .. stop ]</code>
+What does the following list range expression produce in FSI?<br /><code>let x = [0 .. 10 .. 50]</code>	<code>val x : int list = [0; 10; 20; 30; 40; 50; ]</code>
+At the simplest level what is list comprehension syntax?	At the simplest level list comprehension syntax is code in brackets. <code>[ expression ]</code>
 How long will the code in the body of a list comprehension be executed?	Until it terminates.&nbsp;
-From the body of a list comprehension, what makes up elements returned by it?	Elements are returned from the list comprehension using the yield keyword.&nbsp;
+From the body of a list comprehension, what makes up elements returned by it?	Elements are returned from the list comprehension using the <code>yield</code> keyword.&nbsp;
 What resource is consumed during list comprehension generation?	The list is fully generated in memory when created. If you find yourself creating lists with thousands of elements consider using a <code>seq&lt;_&gt;.&nbsp;</code>
-How does -&gt; simplify list comprehensions with for loops?	Rather than:&nbsp;<div>let multiplesOf x = [ for i in 1 .. 10 do yield x * i ]</div><div>you can do:&nbsp;</div><div>let multiplesOf x = [ for i in 1 .. 10 -&gt; x * i ]</div>
+How does <code>-&gt;</code> simplify list comprehensions with <code>for</code> loops?	Rather than:<br><code>&nbsp;<div>let multiplesOf x = [ for i in 1 .. 10 do yield x * i ]</div><div></div></code>you can do:<code>&nbsp;<div>let multiplesOf x = [ for i in 1 .. 10 -&gt; x * i ]</div></code>
 What is the overall point of list comprehensions?	List comprehensions enable you to quickly and concisely generate lists of data.&nbsp;
 What are <i>aggregate operators</i> with respect to lists?	A set of powerful functions that are useful for any collection of values.&nbsp;
-Which List aggregate operator is this: <code>('a -&gt; 'b) -&gt; 'a list -&gt; 'b list</code>	This is <code>List.map</code>
-What does the List aggregate operator map do?	Map is a projection operation that creates a new list based on a provided function.&nbsp;
-What does the List aggregate operation fold do?	Fold distills a list of values into a single value.&nbsp;
-What are the two List aggregate operators for fold?	List.reduce and List.fold.&nbsp;<div>Reduce: ('a -&gt; 'a -&gt; 'a) -&gt; 'a list -&gt; 'a</div><div>Fold: ('acc -&gt; 'b -&gt; 'acc) -&gt; 'acc -&gt; 'b list -&gt; 'acc</div>
-In what direction do List.reduce List.fold operate?	List.reduce and List.fold operate from left to right.&nbsp;
-What are the right to left equivalents of List.reduce and List.fold?	The right to left equivalents of List.reduce and List.fold are List.reduceBack and List.foldBack.&nbsp;
-What does List.iter do?	List.iter calls a function with return type of unit on each item in the list.&nbsp;
-What is the signature of List.iter?	('a -&gt; unit) -&gt; 'a list -&gt; unit
-Because List.iter returns unit, what is it primarily used for?	List.iter is primarily used for evaluating the side-effect of the given function.&nbsp;
-What is the best way to represent a value that may or may not exist?	The option type is the best way to represent something that may or may not exist.&nbsp;
-What are the two possible values of the option type?	Some('a) and None
-What common idiom from other languages does the option type replace?	A common idiom the option type replaces is null - which means the absence of a value.&nbsp;
-What is the <i>anonymous</i> module?	The <i>anonymous</i> module is where, by default, F# puts all your code - and it matches the name of the code file with the first letter capitalized.&nbsp;
-How does one explicitly create a module?	One explicitly creates a module by using the module keyword at the top of a source file.&nbsp;
+Which List aggregate operator signature is this: <code>('a -&gt; 'b) -&gt; 'a list -&gt; 'b list</code>	This is <code>List.map</code>
+What does the List aggregate operator <code>map</code> do?	Map is a projection operation that creates a new list based on a provided function.&nbsp;
+What does the List aggregate operation <code>fold</code> do?	<code>fold</code> distills a list of values into a single value.&nbsp;
+What are the two List aggregate operators for <code>fold</code>?	<code>List.reduce</code> and <code>List.fold.&nbsp;</code><div>Reduce:</div> <code>('a -&gt; 'a -&gt; 'a) -&gt; 'a list -&gt; 'a<div></div></code>Fold:<br /> <code>('acc -&gt; 'b -&gt; 'acc) -&gt; 'acc -&gt; 'b list -&gt; 'acc</code>
+In what direction do <code>List.reduce</code> and <code>List.fold</code> operate?	<code>List.reduce</code> and <code>List.fold</code> operate from left to right.&nbsp;
+What are the right to left equivalents of <code>List.reduce</code> and <code>List.fold</code>?	The right to left equivalents of List.reduce and List.fold are List.reduceBack and List.foldBack.&nbsp;
+What does <code>List.iter</code> do?	<code>List.iter</code> calls a function with return type of <code>unit</code> on each item in the list.&nbsp;
+What is the signature of <code>List.iter</code>?	<code>('a -&gt; unit) -&gt; 'a list -&gt; unit</code>
+Because <code>List.iter</code> returns <code>unit</code>, what is it primarily used for?	<code>List.iter</code> is primarily used for evaluating the side-effect of the given function.&nbsp;
+What is the best way to represent a value that may or may not exist?	The <code>option</code> type is the best way to represent something that may or may not exist.&nbsp;
+What are the two possible values of the <code>option</code> type?	<code>Some('a)</code> and <code>None</code>
+What common idiom from other languages does the <code>option</code> type replace?	A common idiom the <code>option</code> type replaces is null - which means the absence of a value.&nbsp;
+What is the <i>anonymous</i> <code>module</code>?	The <i>anonymous</i> <code>module</code> is where, by default, F# puts all your code - and it matches the name of the code file with the first letter capitalized.&nbsp;
+How does one explicitly create a <code>module</code>?	One explicitly creates a <code>module</code> by using the <code>module</code> keyword at the top of a source file.&nbsp;
 Does F# support nested modules?	Yes, F# supports nested modules.&nbsp;
-How does one declare a nested module?	To declare a nested module, use the module keyword followed by the name of the module and an equals sign. Nested modules must be indented to disambiguate them from the top-level module.&nbsp;
+How does one declare a nested <code>module</code>?	To declare a nested module, use the <code>module</code> keyword followed by the name of the module and an equals sign. Nested modules must be indented to disambiguate them from the top-level module.&nbsp;
 What must be done to disambiguate a nested <code>module</code> from the top-level <code>module</code>?	Nested modules must be indented to be disambiguated from the top-level <code>module</code>.&nbsp;
 What is the alternative to modules?	Namespaces are the alternative to modules.&nbsp;
 Namespaces can do just what modules can with which single exception?	Namespaces cannot contain values, they can only contain types.&nbsp;
-Can namespaces be nested?	Namespaces can be nested. They are nested not using whitespace like modules, but rather with dotting. So, PlayingCards.Poker would be a namespace nested within PlayingCards.&nbsp;
-What is the software-engineering difference in usage between modules and namespaces?	The difference is that modules are used for rapid prototyping while namespaces are used for larger-scale projects using an object oriented approach.&nbsp;
+Can namespaces be nested?	Namespaces can be nested. They are nested not using whitespace like modules, but rather with dotting. So, <code>PlayingCards.Poker</code> would be a namespace nested within <code>PlayingCards</code>.&nbsp;
+What is the software-engineering difference in usage between <code>module</code> and <code>namespace</code>?	The difference is that <code>module</code> is used for rapid prototyping while <code>namespace</code> is used for larger-scale projects using an object oriented approach.&nbsp;
 Name the term for when a function somehow changes the state of a program.&nbsp;	Changing the state of a program, or file system is known as a <i>side-effect.&nbsp;</i>
 By default, how changeable the names of things in a functional language?&nbsp;	Not changeable, they are immutable.&nbsp;
 What is the general benefit of immutability?	Immutability limits unintended side-effects - immutable values help you write safer code because you can't screw up what you can't change.&nbsp;
 To what value must all standalone expressions evaluate to?	Standalone expressions must always evaluate to the <code>unit</code> value.&nbsp;
 What's a common error interfacing with .NET libraries due to currying?	.NET libraries like <code>System.IO.StringReader</code> have methods like <code>ReadLine</code> which require <code>unit</code> arguments, so they must be called as <code>ReadLine()</code>. Calling as <code>ReadLine</code> compiles, but is an error at runtime.&nbsp;
-What is this operator named? |&gt;	The |&gt; is the pipe operator.&nbsp;
-What is the signature of this operator? |&gt;	let (|&gt;) x f = f x<div>All this does is allow you to put the function argument in front of the function rather than after. That's all.&nbsp;</div>
-What is the signature of this operator? &lt;|	This is the reverse pipe operator and its signature is: let (&lt;|) f x = f x<div>It reduces the need for parentheses and can make the code cleaner.</div><div>printf "%i" 1+2 // error</div><div>printf "%i" (1+2) // using parens</div><div>printf "%i" &lt;| 1 + 2 // using reverse pipe</div>
+What is the signature of this operator? <code>|&gt;</code>	<code>let (|&gt;) x f = f x</code><div>All this does is allow you to put the function argument in front of the function rather than after. That's all.&nbsp;</div>
+What is the signature of this operator? <code>&lt;|</code>	This is the reverse pipe operator and its signature is: <code>let (&lt;|) f x = f x</code><br><div>It reduces the need for parentheses and can make the code cleaner.</div><br><code><br><div>printf "%i" 1+2 // error</div><br><div>printf "%i" (1+2) // using parens</div><br><div>printf "%i" &lt;| 1 + 2 // using reverse pipe</div><br></code>
 What is the idea of partial function application?	The idea of partial application is that if you fix the first N parameters of a function you get a partial function of the remaining parameters.&nbsp;
 What makes a significant difference for the ease of use of partial application?	The order of parameters makes a big difference in the ease of use of partial application.&nbsp;
 What are the guidelines to design for better partial application?	1. Put earlier: parameters more likely to be static.&nbsp;<div>2. Put last: the datastructure or collection (or most varying argument)</div><div>3. For well-known operations (ex. subtract) put in the expected order.&nbsp;</div>
-What change makes .NET base-class library functions more idiomatic in F#?	Wrapping .NET base-class library functions for partial application makes them more idiomatic in F#.&nbsp;<div>let replace oldStr newStr (s:string) =&nbsp;</div><div>&nbsp; s.Replace(oldValue=oldStr, newValue=newStr)</div>
+What change makes .NET base-class library functions more idiomatic in F#?	Wrapping .NET base-class library functions for partial application makes them more idiomatic in F#.&nbsp;<br><code><div>let replace oldStr newStr (s:string) =&nbsp;</div><div>&nbsp; s.Replace(oldValue=oldStr, newValue=newStr)</div></code>
 What might we call a monoid in a programming context today?	We might call a monoid <code>ICombinable</code>.&nbsp;
 In programming terms is there a connection between monad and monoid?	No, there is no programming connection but there is a mathematical connection.&nbsp;
 What are the three requirements for something to be a monoid?	<div>You start with a bunch of things <i>and</i>&nbsp;some way of combining them two at a time.</div>1. Closure: The result of combining things is always another one of the things.&nbsp;<div>2. Associativity: When combining more than two things, which pairwise combination you do first doesn't matter.&nbsp;</div><div>3. Identity Element: There is a special thing called "zero" such that when you combine any thing with "zero" you get the original thing back.&nbsp;</div>
-What is the Closure rule for monoids?	The closure rule states that the result of combining two things is always another one of the things.&nbsp; ('a -> 'a -> 'a)
+What is the Closure rule for monoids?	The closure rule states that the result of combining two things is always another one of the things.&nbsp; <code>('a -&gt; 'a -&gt; 'a)</code>
 What is the Associativity rule for monoids?	The associativity rule for monoids states that when combining more than two things, which pairwise combination you do first doesn't matter.&nbsp;
 What is the Identity Element rule for monoids?	The Identity Element rule for monoids states that there is a special thing called "zero" such that when you combine any thing with "zero" you get the original thing back.&nbsp;
 What is the key for identifying the zero for a monoid?	The zero value depends very much on the <i>operation</i>&nbsp;not just the set of things.&nbsp;
 What are the key two parts to the definition of a particular monoid?	The two parts of the definition of any particular monoid are the <i>things</i>&nbsp;and the <i>operation</i>. Ex. "the integers" is not a monoid, but "the integers under addition" is a monoid.&nbsp;
 What is the term for a system that follows the first two rules for a monoid but not the zero rule?	A system that only follows the first two rules but has no zero is referred to as a semigroup.&nbsp;
-What is the practical benefit of the closure rule for monoids?	The practical benefit of the closure rule for monoids is that you can convert pairwise operations that work on lists or sequences.&nbsp;<div>1 + 2 + 3&nbsp;</div><div>becomes</div><div>[1;2;3] |&gt; List.reduce (+)</div>
+What is the practical benefit of the closure rule for monoids?	The practical benefit of the closure rule for monoids is that you can convert pairwise operations that work on lists or sequences.&nbsp;<code><div>1 + 2 + 3&nbsp;</div></code><div>becomes</div><code><div>[1;2;3] |&gt; List.reduce (+)</div></code>
 What is the practical benefit of the monoid rule of Associativity?	When pairwise operations can be conducted in any order it opens up the option to do:&nbsp;<div>- Divide and Conquer Algorithms</div><div>- Parallelization</div><div>- Incrementalism</div>
-In terms of design patterns, what is a monoid?	A monoid is a way to describe an aggregation pattern. We have a list of things, we have some way of combining them and we get a single aggregated object back at the end. Or, in F# terms:&nbsp;<div>Monoid Aggregation: 'T list -&gt; 'T</div>
+In terms of design patterns, what is a monoid?	A monoid is a way to describe an aggregation pattern. We have a list of things, we have some way of combining them and we get a single aggregated object back at the end. Or, in F# terms:&nbsp;<div>Monoid Aggregation: <code>'a list -&gt; 'a</code></div>
 What are some conversational clues you are dealing with a monoid?	When you are designing code and start using terms like "sum", "product", "composition" or "concatenation."&nbsp;
 When are <code>lazy</code> computations evaluated?	<code>lazy</code> computations are evaluated when the result is needed.
-What is the syntax for a lazy computation?	let identifier = lazy ( expression )
-How does one cause a lazy computation to be performed?	To force the computation to be performed you call the method Force.&nbsp;<div>let x = 10</div><div>let result = lazy (x + 10)</div><div>printfn "%d" (result.Force())</div>
-What do subsequent calls to Lazy Force return?	Subsequent calls to Force return the same result and do not execute any code.&nbsp;
+What is the syntax for a <code>lazy</code> computation?	<code>let identifier = lazy ( expression )</code>
+How does one cause a <code>lazy</code> computation to be performed?	To force the computation to be performed you call the method <code>Force</code>.&nbsp;<code><div>let x = 10</div><div>let result = lazy (x + 10)</div><div>printfn "%d" (result.Force())</div></code>
+What do subsequent calls to <code>lazy Force</code> return?	Subsequent calls to <code>Force</code> return the same result and do not execute any code.&nbsp;
 What is a sequence?	A sequence is a logical series of elements, all of one type.&nbsp;
 When are sequences useful?	Sequences are useful when you have a large ordered collection of data but do not necessarily expect to use all of the elements.&nbsp;
 When are individual elements of a sequence computed?	Individual elements of a sequence are computed only as required, so a sequence can provide better performance than a list in situations in which not all the elements are used.&nbsp;
 What is a primary difference between lists and sequences?	Lists have all of their members in memory, while sequences compute each individual elements only as required.&nbsp;
-What is the F# type for sequences?	The F# type for sequences is seq&lt;'T&gt; which is an alias for IEnumerable&lt;T&gt;. Therefore any .NET Framework type that implements IEnumerable can be used as a sequence.&nbsp;
-What is the .NET type backing seq&lt;'T&gt;?	The .NET backing type is IEnumerable&lt;T&gt;
-What is a sequence expression?	A sequence expression is an expression that evaluates to a sequence. The simplest form specifies a range ex. <br>seq { 1 .. 5 }
+What is the F# type for sequences?	The F# type for sequences is <code>seq&lt;'T&gt;</code> which is an alias for <code>IEnumerable&lt;T&gt;</code>. Therefore any .NET Framework type that implements <code>IEnumerable</code> can be used as a sequence.&nbsp;
+What is the .NET type backing <code>seq&lt;'T&gt;</code>?	The .NET backing type is <code>IEnumerable&lt;T&gt;</code>
+What is a sequence expression?	A sequence expression is an expression that evaluates to a sequence. The simplest form specifies a range ex. <br /><code>seq { 1 .. 5 }</code>
 When does one use <code>yield</code> in a sequence expression?	One uses <code>yield</code> when each iteration is expected to generate a single element of the sequence.&nbsp;
 When does one use <code>yield!</code> in a sequence expression?	One uses <code>yield!</code> in a sequence expression when each iteration is expected to produce a sequence of elements. Elements generated from each iteration are concatenated to produce the final sequence.&nbsp;
-What is happening in the following code:&nbsp;<div>let rec inorder tree =</div><pre>    seq {<br>      match tree with<br>          | Tree(x, left, right) -&gt; <br>              yield! inorder left<br>              yield x<br>              yield! inorder right<br>          | Leaf x -&gt; yield x<br>    }<br></pre>	This code is a sequence expression that uses both yield to produce single elements and yield! to produce lists of elements. It does this by matching on a discriminated union.&nbsp;
-What feature allows for the creation of ad-hoc types?	Type abbreviations, such as:&nbsp;<code>type NodeList = List&lt;node&gt;</code> allow you to create ad-hoc types.&nbsp;
+What is happening in the following code:<br><code><pre>let rec inorder tree =<br>    seq {<br>      match tree with<br>          | Tree(x, left, right) -&gt;<br>              yield! inorder left<br>              yield x<br>              yield! inorder right<br>          | Leaf x -&gt; yield x<br>    }<br></pre></code><br>	This code is a sequence expression that uses both <code>yield</code> to produce single elements and <code>yield!</code> to produce lists of elements. It does this by matching on a discriminated union.&nbsp;
+What feature allows for the creation of ad-hoc types?	Type abbreviations allow you to create ad-hoc types. ex. <br /><br><code>type NodeList = List&lt;node&gt;</code>
 What is a fundamental limitation of type systems that TypeProviders address?	TypeProviders address the fundamental limitation of type systems in that type systems only describe the shape of data <i>within</i>&nbsp;programs.&nbsp;
 What feature uses the F# compiler to wrap external data so you can focus coding?	TypeProviders are the F# feature that leverages the F# compiler to handle all the type-wrapper-conversion-generation stuff for you so you can just focus on coding.&nbsp;
 At what point during code lifetime does a TypeProvider generate wrappers?	Wrappers provided by TypeProviders are generated at <i>design time</i>&nbsp;so you can interact with them in the IDE or FSI window.&nbsp;
