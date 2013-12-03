@@ -1,63 +1,63 @@
-What is a keyword that associates an identifier with a value or function	let
-What is the let value binding syntax?	let identifier-or-pattern [: type] =&nbsp;<div>&nbsp; &nbsp; expression</div><div>body-expression</div>
-What is the let function binding syntax?	let identifier parameter-list [:return-type] =<div>&nbsp; &nbsp; expression</div><div>body-expression</div>
-What is the scope of let?	Limited to the portion of the containing scope (function, module, file or class) after the binding appears
-If you separate the let expression from the identifier what must you do to the expression?	Indent each line
-What is: let i, j, k = (1, 2, 3)?	Pattern that contains names.&nbsp;
-What is the let body-expression?	The expression in which names are used.&nbsp;
+What is a keyword that associates an identifier with a value or function	<code>let</code>
+What is the <code>let</code> value binding syntax?	<code>let identifier-or-pattern [: type] = expression<br>body-expression</code>
+What is the <code>let</code> function binding syntax?	<code>let identifier parameter-list [:return-type] =<div>&nbsp; &nbsp; expression</div><div>body-expression</div></code>
+What is the scope of <code>let</code>?	Limited to the portion of the containing scope (function, module, file or class) after the binding appears
+If you separate the <code>let</code> expression from the identifier what must you do to the expression?	Indent each line
+What is the following:<br /><br><code>let i, j, k = (1, 2, 3)</code>	Pattern that contains names.&nbsp;
+What is the <code>let body-expression</code>?	The expression in which names are used.&nbsp;
 Where may a <code>let</code> appear?	<code>module</code> level, definition of a class type or in local scopes.&nbsp;
 Where must a <code>let</code> have a <i>body-expression</i>?	Local scopes and functions, not at <code>module</code> level or in a <code>class</code> type.&nbsp;
 Where are bound names usable?	After the point of definition but not at any point before the <code>let</code> binding appears.&nbsp;
-How do function let bindings differ from value bindings?	Function bindings include the function name, parameter list and return type.&nbsp;
-What is 'a' in let function a = a + 1	Name of the parameter
-What is 'function' in let function a = a + 1	Name of the function.&nbsp;
-What kind of parameter is this: let function2 (a, b) = a + b	This parameter is a pattern, specifically a tuple pattern.&nbsp;
-What does a let binding expression evaluate to?	The value of the last expression.&nbsp;
-What is being applied to the parameter: let function1 (a: int) = a + 1	Type annotation
-What does the second 'int' define: let function1 (a: int) : int = a + 1	The return type of the function.&nbsp;
+How do function <code>let</code> bindings differ from value bindings?	Function bindings include the function name, parameter list and return type.&nbsp;
+What is 'a' in: <br /><br><code>let function a = a + 1</code>	Name of the parameter
+What is 'function' in:<br /><br><code>let function a = a + 1</code>	Name of the function.&nbsp;
+What kind of parameter is this: <br /><br><code>let function2 (a, b) = a + b</code>	This parameter is a pattern, specifically a <code>tuple</code> pattern.&nbsp;
+What does a <code>let binding expression</code> evaluate to?	The value of the last expression.&nbsp;
+What is being applied to the parameter: <br /><br><code>let function1 (a: int) = a + 1</code>	Type annotation
+What does the second 'int' define: <br /><br><code>let function1 (a: int) : int = a + 1</code>	The return type of the function.&nbsp;
 Where can a <code>let</code> binding not appear?	A <code>let</code> binding may not appear in a structure or record type.&nbsp;
-What is required of a class to contain a let binding?	A primary constructor ex. type MyClass(a) = ...
-What is the default visibility for a let binding contained within a class?	private
-What is the scope of a let within a type.&nbsp;	Scope is limited to the type (and likely also all previous scope rules apply as well).
+What is required of a class to contain a <code>let</code> binding?	A primary constructor ex. <br /><br><code>type MyClass(a) = ...</code>
+What is the default visibility for a <code>let</code> binding contained within a class?	<code>private</code>
+What is the scope of a <code>let</code> within a type?&nbsp;	Scope is limited to the type (and likely also all previous scope rules apply as well).
 Where may <code>let</code> bindings contain explicit type parameters?	At the <code>module</code> level, in a type or in a computation expression.&nbsp;
-What can be applied to top-level let bindings of a module?	Attributes:&nbsp;<div>[&lt;Obsolete&gt;]</div><div>let function1 x y = x + y</div>
+What can be applied to top-level <code>let</code> bindings of a <code>module</code>?	Attributes: ex. <br /><br><code>[&lt;Obsolete&gt;]<div>let function1 x y = x + y</div></code>
 When is a <code>let</code>-bound value in a <code>module</code> accessible to clients?	When the <code>module</code> is accessible.
-When are let-bindings in a class accessible to clients?	Never, they are private to the class.&nbsp;
+When are let-bindings in a class accessible to clients?	Never, they are <code>private</code> to the class.&nbsp;
 How do clients refer to let-bound values in a module they have access to?	By using the fully-qualified name: ModuleName.FunctionName.&nbsp;
-How do clients refer to let-bound values in an accessible module without full qualification?	By using an import declaration such as: open Module1
-How does a module force clients to use fully qualified names?	By using the RequireQualifiedAccess attribute at the module level.&nbsp;
-What is a do binding used for?	A do binding is used to execute code without defining a function or value.&nbsp;
-What does the expression of a do binding return?	unit
+How do clients refer to <code>let</code>-bound values in an accessible <code>module</code> without full qualification?	By using an import declaration such as: <br /><br><code>open Module1</code>
+How does a <code>module</code> force clients to use fully qualified names?	By using the <code>[&lt;RequireQualifiedAccess&gt;]</code> attribute at the <code>module</code> level.&nbsp;
+What is a <code>do</code> binding used for?	A <code>do</code> binding is used to execute code without defining a function or value.&nbsp;
+What does the expression of a <code>do</code> binding return?	<code>unit</code>
 When is the code in a top-level (<code>module</code>) <code>do</code> binding executed?	When the <code>module</code> is initialized.&nbsp;
-What is the do binding syntax?	[ attributes ]<div>[ do ]expression</div>
-What is the fun keyword for?	The fun keyword defines a lambda expression, i.e. an anonymous function.&nbsp;
-What is the fun keyword syntax?	fun parameter-list -&gt; expression
+What is the <code>do</code> binding syntax?	<code>[ attributes ]<div>[ do ]expression</div></code>
+What is the <code>fun</code> keyword for?	The <code>fun</code> keyword defines a lambda expression, i.e. an anonymous function.&nbsp;
+What is the <code>fun</code> keyword syntax?	<code>fun parameter-list -&gt; expression</code>
 What determines the return value of a function?	The last expression which generates a return value.&nbsp;
-What is a fun keyword parameter-list?	Names and optionally, types of parameters. Also the parameter-list can be composed of any F# patterns ex. fun (a, b) -&gt; ... or fun head :: tail -&gt; ...&nbsp;
-What is the rec keyword used for?	It is used in combination with let to define a recursive function.&nbsp;
-What is the syntax of a recursive function bound with let?	let rec function-name parameter-list =&nbsp;<div>&nbsp; &nbsp; function-body</div>
-How does one define mutually recursive functions?	Define the first function with a 'let rec' ... first and then immediately combine the second function to the first using 'and':&nbsp;<div>let rec Even x =&nbsp;</div><div>&nbsp; &nbsp; if x = 0 then true</div><div>&nbsp; &nbsp; else Odd (x - 1)</div><div>and Odd x =</div><div>&nbsp; &nbsp; if x = 1 then true</div><div>&nbsp; &nbsp; else Even (x - 1)</div>
+What is a <code>fun</code> keyword <code>parameter-list</code>?	Names and optionally, types of parameters. Also the parameter-list can be composed of any F# patterns ex. <code>fun (a, b) -&gt; ... </code> or <code>fun head :: tail -&gt; ...</code>&nbsp;
+What is the <code>rec</code> keyword used for?	It is used in combination with <code>let</code> to define a recursive function.&nbsp;
+What is the syntax of a recursive function bound with <code>let</code>?	<code>let rec function-name parameter-list =&nbsp;<div>&nbsp; &nbsp; function-body</div></code>
+How does one define mutually recursive functions?	Define the first function with a <code>let rec</code> ... first and then immediately combine the second function to the first using <code>and</code>:&nbsp;<code><div>let rec Even x =&nbsp;</div><div>&nbsp; &nbsp; if x = 0 then true</div><div>&nbsp; &nbsp; else Odd (x - 1)</div><div>and Odd x =</div><div>&nbsp; &nbsp; if x = 1 then true</div><div>&nbsp; &nbsp; else Even (x - 1)</div></code>
 Is structure a reference or value type?	Structure is a value type, meaning it is stored directly on the stack, or, when used as fields or array elements, inline in the parent type.&nbsp;
 What is the purpose of struct with respect to classes?	Structure is a compact object type that can be more efficient than a class for types that have a small amount of data.&nbsp;
-Syntax of struct declaration	[ attributes ]<div>type [accessibility-modifier] type-name =</div><div>&nbsp; &nbsp; struct</div><div>&nbsp; &nbsp; &nbsp; &nbsp; type-definition-elements</div><div>&nbsp; &nbsp; end</div><div>// or</div><div>[ attributes ]</div><div>[&lt;StructAttribute&gt;]</div><div>type [accessibility-modifier] type-name =</div><div>&nbsp; &nbsp; type-definition-elements</div>
-What may appear in the type-definition-elements for a struct?	Constructors, mutable and immutable fields and they can declare members and interface implementations.&nbsp;
-What are structs not able to do?	Participate in inheritance, use let or do-bindings and cannot recursively contain fields of their own type. They can contain reference cells that reference their own type however.&nbsp;
+Syntax of struct declaration	<code>[ attributes ]<div>type [accessibility-modifier] type-name =</div><div>&nbsp; &nbsp; struct</div><div>&nbsp; &nbsp; &nbsp; &nbsp; type-definition-elements</div><div>&nbsp; &nbsp; end</div><div>// or</div><div>[ attributes ]</div><div>[&lt;StructAttribute&gt;]</div><div>type [accessibility-modifier] type-name =</div><div>&nbsp; &nbsp; type-definition-elements</div></code>
+What may appear in the <code>type-definition-elements</code> for a struct?	Constructors, mutable and immutable fields and they can declare members and interface implementations.&nbsp;
+What are structs not able to do?	Participate in inheritance, use <code>let</code> or <code>do</code>-bindings and cannot recursively contain fields of their own type. They can contain reference cells that reference their own type however.&nbsp;
 What replaces <code>let</code> bindings in <code>struct</code>s?	Fields must be declared using the <code>val</code> keyword. <code>val</code> defines a keyword and type but does not allow initialization.&nbsp;
-What does a struct initialize val declarations to?	They are initialized to zero or null.&nbsp;
-What does a struct implicit constructor do?	Initializes val declarations to zero or null.&nbsp;
-What might a struct explicit constructor do?	It might accept values with which to initialize val declarations.&nbsp;
+What does a struct initialize <code>val</code> declarations to?	They are initialized to zero or null.&nbsp;
+What does a struct implicit constructor do?	Initializes <code>val</code> declarations to zero or null.&nbsp;
+What might a struct explicit constructor do?	It might accept values with which to initialize <code>val</code> declarations.&nbsp;
 Does struct explicit initialization support zero-initialization?	Yes, one may still zero-initialize a struct with an explicit initializer.&nbsp;
 What do records represent?	Simple aggregates of named values, optionally with members.&nbsp;
-What is record syntax?	[ attributes ]<div>type [accessibility-modifier] typename = {</div><div>&nbsp; &nbsp; [mutable] label1 : type1;</div><div>&nbsp; &nbsp; [mutalbe] label2 : type2;</div><div>&nbsp; &nbsp; ...</div><div>&nbsp; &nbsp; }</div><div>&nbsp; &nbsp; member-list</div>
-What is this: let mypoint = { x = 1.0; y = 2.0; }	This is a record expression. Enclosed in braces, type inferred by the compiler if labels don't match an existing record.&nbsp;
+What is record syntax?	<code>[ attributes ]<div>type [accessibility-modifier] typename = {</div><div>&nbsp; &nbsp; [mutable] label1 : type1;</div><div>&nbsp; &nbsp; [mutalbe] label2 : type2;</div><div>&nbsp; &nbsp; ...</div><div>&nbsp; &nbsp; }</div><div>&nbsp; &nbsp; member-list</div></code>
+What is this?<br /><br><code>let mypoint = { x = 1.0; y = 2.0; }</code>	This is a record expression. Enclosed in braces, type inferred by the compiler if labels don't match an existing record.&nbsp;
 What is the record label precedence rule?	The labels most recently declared take precedence over those of the previously declared type. This allows records with matching labels to handle ambiguous construction.&nbsp;
-How does one explicitly specify labels for a record deferred by precedence?	let myPoint1 = { <font color="#0000ff">Point</font>.x = 1.0; y = 2.0; }
+How does one explicitly specify labels for a record deferred by precedence?	<code>let myPoint1 = { Point.x = 1.0; y = 2.0; }</code>
 At record construction, are values required for all fields?	Yes
 At record construction time can values refer to other fields in the initialization expression?	No
-What is a 'copy and update record expression'?	Copies an existing record, optionally changing some of the field values.&nbsp;<div>let myRecord2 = { myRecord with Y = 100; }</div>
+What is a 'copy and update record expression'?	Copies an existing record, optionally changing some of the field values.&nbsp;<br /><br><code><div>let myRecord2 = { myRecord with Y = 100; }</div></code>
 What is the default mutability of records?	Immutable. But you can copy &amp; update or specify a mutable field.&nbsp;
-What is:&nbsp;<div>type Car = {</div><div>&nbsp; &nbsp; Make : string</div><div>&nbsp; &nbsp; Model : string</div><div>&nbsp; &nbsp; }</div>	Record
-For records, why should one not use DefaultAttribute on fields?	This encourages mutable fields. Better: define default instances of records with fields initialized to default values and then use copy and update record expression to set any fields that differ from default values.&nbsp;
+What is this?&nbsp;<code><div>type Car = {</div><div>&nbsp; &nbsp; Make : string</div><div>&nbsp; &nbsp; Model : string</div><div>&nbsp; &nbsp; }</div></code>	Record
+For records, why should one not use <code>[&lt;DefaultAttribute&gt;]</code> on fields?	This encourages mutable fields. Better: define default instances of records with fields initialized to default values and then use copy and update record expression to set any fields that differ from default values.&nbsp;
 How are record fields different from class fields?	Record fields are automatically exposed as properties and are used in the creation and copying of records.&nbsp;
 How is record construction different than class construction?	Records cannot define a constructor. Instead construction is done using record expressions and record copy and update expressions. Classes have no direct relationship between constructor parameters, fields and properties.&nbsp;
 What are the equality semantics for record?	Like union and structure types, records have structural equality semantics (rather than reference equality semantics).
@@ -66,52 +66,52 @@ How are fields used in record pattern matching?	Explicitly for structural compar
 What does F# inference offer?	Generic function parameters to the degree the compiler can guarantee based on use.&nbsp;
 Is F# static or dynamically typed?	F# is statically typed i.e. the compiler deduces the exact type for each construct during compilation.&nbsp;
 What determines the return type of a function?	The return type of the last expression in the function.&nbsp;
-What is the syntax for the entrypoint?	[&lt;EntryPoint&gt;]<div>let-function-binding</div>
+What is the syntax for the entrypoint?	<code>[&lt;EntryPoint&gt;]<div>let-function-binding</div></code>
 What is the entry point?	Where execution of a program formally starts.&nbsp;
-What is required for an explicit entry point?	Correct syntax, EntryPoint attribute, and it must be the last function in the last compiled file i.e. the last file in the project to compile.&nbsp;
-What is the signature of the entry point function?	string array -&gt; int
+What is required for an explicit entry point?	Correct syntax, <code>[&lt;EntryPoint&gt;]</code> attribute, and it must be the last function in the last compiled file i.e. the last file in the project to compile.&nbsp;
+What is the signature of the entry point function?	<code>string array -&gt; int</code>
 Where is the implicit entry point?	When there is no <code>[&lt;EntryPoint&gt;]</code> attribute that explicitly indicates the entry point, the top level bindings in the last file to be compiled are used as the entry point.&nbsp;
 What is a tuple?	A tuple is a grouping of unnamed but ordered values, possibly of different types.&nbsp;
-What is tuple syntax?	( element, ... , element)
-How does one use matching to access items in a tuple?	let print tuple =<div>&nbsp; &nbsp; match tuple1 with</div><div>&nbsp; &nbsp; &nbsp; &nbsp;| (a, b) -&gt; printfn "Pair %A %A" a b</div>
-Name the two functions that access tuples ordinally.	fst and snd.&nbsp;<div>let c = fst (1, 2)</div><div>let d = snd (1, 2)</div>
+What is tuple syntax?	<code>( element, ... , element)</code>
+How does one use matching to access items in a tuple?	<code>let print tuple =<div>&nbsp; &nbsp; match tuple1 with</div><div>&nbsp; &nbsp; &nbsp; &nbsp;| (a, b) -&gt; printfn "Pair %A %A" a b</div></code>
+Name the two functions that access tuples ordinally.	fst and snd.&nbsp;<code><div>let c = fst (1, 2)</div><div>let d = snd (1, 2)</div></code>
 What does the use of tuples as function arguments avoid?	Implicit currying of function arguments.&nbsp;
-What is the type signature of: (10, 10.0, "ten")?	int * float * string
-What does ! do with respect to reference cells?	Dereferences the reference cell.&nbsp;<div>let refVar = ref 6</div><div>refVar := 50</div><div>printfn "%d" !refVar</div>
-What are the three types of Active Patterns?	Single-case, partial-case and multi-case.&nbsp;
+What is the type signature of the following?<br /><br><code>(10, 10.0, "ten")</code>	<code>int * float * string</code>
+What does <code>!</code> do with respect to reference cells?	Dereferences the reference cell.&nbsp;<code><div>let refVar = ref 6</div><div>refVar := 50</div><div>printfn "%d" !refVar</div></code>
+What are the three types of Active Patterns?	Single, partial and multi-case.
 What do single-case Active Patterns do?	Convert the input into a new value.&nbsp;
 What do partial-case Active Patterns do?	Partial-case Active Patterns carve out an incomplete piece of the input space (such as only matching against strings that contain the letter 'x'.&nbsp;
 What do multi-case Active Patterns do?	Multi-case Active Patterns partition the input space into one of several values such as partitioning all possible integers into evens, odds or zero.&nbsp;
 What operator are sigle-case Active Pattern function names bound within?	Banana Clips: <code>(| activePatternName |)</code>
-What does the following define: let (|FileExtension|) filePath = Path.GetExtension(filePath)	Single-case Active Pattern.&nbsp;
+What does the following define?<br /><br><code>let (|FileExtension|) filePath = Path.GetExtension(filePath)</code>	Single-case Active Pattern.&nbsp;
 What operator are partial Active Patterns enclosed within?	<code>(|ident|_|)</code>
-What do partial Active Pattern functions return?	The option type: Some('a) or None.&nbsp;
-What is the operator for block comments?	(* ... *)
-What is the operator for end of line comment?	//
-What characters can start an identifier?	Any letter and _
+What do partial Active Pattern functions return?	The option type:<br /><br><code>Some('a)</code> or <code>None.&nbsp;</code>
+What is the operator for block comments?	<code>(* ... *)</code>
+What is the operator for end of line comment?	<code>//</code>
+What characters can start an identifier?	Any letter and <code>_</code>
 All F# input files are assumed to be of which encoding?	UTF-8
-A type of the form 'ident is called?	A <i>variable type</i>. Ex. 'a, 'T, 'Key
-A type of the form _ is called what?	This is an <i>anonymous variable type.&nbsp;</i>
-A type of the form ^ident is called what?	^ident is a <i>statically resolved type variable.&nbsp;</i>
-Name this pattern: _	Wildcard pattern.&nbsp;
-Name this pattern: literal	Constant pattern.&nbsp;
-Name this pattern: ident	Variable pattern.&nbsp;
-Name this pattern: (pat, ..., pat)	Tuple pattern.&nbsp;
-Name this pattern: [ pat; ...; pat; ]	List pattern.&nbsp;
-Name this pattern: <br>[| pat; ...; pat |]	Array pattern.&nbsp;
-Name this pattern: { id=pat; ...; id=pat }	Record pattern.&nbsp;
-Name this pattern: id(pat, ..., pat)	Union case pattern.&nbsp;
-Name this pattern: pat | pat	"Or" pattern.&nbsp;
-Name this pattern: pat &amp; pat	"Both" pattern.&nbsp;
-Name this pattern:&nbsp;<i>pat</i> as <i>id</i>	Named pattern.&nbsp;
-Name this pattern:&nbsp;:? type	Type test pattern.
-Name this pattern:&nbsp;:? type as id	Type case pattern.&nbsp;
-Name this pattern:&nbsp;null	Null pattern.&nbsp;
-What kind of list is this: [ expr; ...; expr; ]	List literal.&nbsp;
-What kind of list is this: [ expr..expr ]	Range list.&nbsp;
-What kind of list is this: [ comp-expr ]	Generated list.&nbsp;
-What list operation is this: expr :: expr	List cons.&nbsp;
-What list operation is this: expr @ expr	List append.&nbsp;
+A type of the form <code>'ident</code> is called?	A <i>variable type</i>. Ex. <code>'a</code>, <code>'T</code>, <code>'Key</code>
+A type of the form <code>_</code> is called what?	This is an <i>anonymous variable type.&nbsp;</i>
+A type of the form <code>^ident</code> is called what?	<code>^ident</code> is a <i>statically resolved type variable.&nbsp;</i>
+Name this pattern: <br />_	Wildcard pattern.&nbsp;
+Name this pattern: <br /><code>literal</code>	Constant pattern.&nbsp;
+Name this pattern: <br /><code>ident</code>	Variable pattern.&nbsp;
+Name this pattern: <br /><code>(pat, ..., pat)</code>	Tuple pattern.&nbsp;
+Name this pattern: <br /><code>[ pat; ...; pat; ]</code>	List pattern.&nbsp;
+Name this pattern: <br /><code>[| pat; ...; pat |]</code>	Array pattern.&nbsp;
+Name this pattern: <br /><code>{ id=pat; ...; id=pat }</code>	Record pattern.&nbsp;
+Name this pattern: <br /><code>id(pat, ..., pat)</code>	Union case pattern.&nbsp;
+Name this pattern: <br /><code>pat | pat</code>	"Or" pattern.&nbsp;
+Name this pattern: <br /><code>pat &amp; pat</code>	"Both" pattern.&nbsp;
+Name this pattern:<br /><code>pat as id</code>	Named pattern.&nbsp;
+Name this pattern:&nbsp;<br /><code>:? type</code>	Type test pattern.
+Name this pattern:&nbsp;<br /><code>:? type as id</code>	Type case pattern.&nbsp;
+Name this pattern:&nbsp;<br /><code>null</code>	Null pattern.&nbsp;
+What kind of list is this: <br /><code>[ expr; ...; expr; ]</code>	List literal.&nbsp;
+What kind of list is this:<br /><code>[ expr..expr ]</code>	Range list.&nbsp;
+What kind of list is this:<br /><code>[ comp-expr ]</code>	Generated list.&nbsp;
+What list operation is this:<br /><code>expr :: expr</code>	List cons.&nbsp;
+What list operation is this:<br /><code>expr @ expr</code>	List append.&nbsp;
 What is this operator: &amp;&amp;	Boolean and.&nbsp;
 What is this operator: ||	Boolean or
 What is this operator: not	Boolean not.&nbsp;
@@ -169,7 +169,7 @@ What is the software-engineering difference in usage between modules and namespa
 Name the term for when a function somehow changes the state of a program.&nbsp;	Changing the state of a program, or file system is known as a <i>side-effect.&nbsp;</i>
 By default, how changeable the names of things in a functional language?&nbsp;	Not changeable, they are immutable.&nbsp;
 What is the general benefit of immutability?	Immutability limits unintended side-effects - immutable values help you write safer code because you can't screw up what you can't change.&nbsp;
-To what value must all standalone expressions evaluate to?	Standalone expressions must always evaluate to the unit value.&nbsp;
+To what value must all standalone expressions evaluate to?	Standalone expressions must always evaluate to the <code>unit</code> value.&nbsp;
 What's a common error interfacing with .NET libraries due to currying?	.NET libraries like <code>System.IO.StringReader</code> have methods like <code>ReadLine</code> which require <code>unit</code> arguments, so they must be called as <code>ReadLine()</code>. Calling as <code>ReadLine</code> compiles, but is an error at runtime.&nbsp;
 What is this operator named? |&gt;	The |&gt; is the pipe operator.&nbsp;
 What is the signature of this operator? |&gt;	let (|&gt;) x f = f x<div>All this does is allow you to put the function argument in front of the function rather than after. That's all.&nbsp;</div>
@@ -205,7 +205,7 @@ What is a sequence expression?	A sequence expression is an expression that evalu
 When does one use <code>yield</code> in a sequence expression?	One uses <code>yield</code> when each iteration is expected to generate a single element of the sequence.&nbsp;
 When does one use <code>yield!</code> in a sequence expression?	One uses <code>yield!</code> in a sequence expression when each iteration is expected to produce a sequence of elements. Elements generated from each iteration are concatenated to produce the final sequence.&nbsp;
 What is happening in the following code:&nbsp;<div>let rec inorder tree =</div><pre>    seq {<br>      match tree with<br>          | Tree(x, left, right) -&gt; <br>              yield! inorder left<br>              yield x<br>              yield! inorder right<br>          | Leaf x -&gt; yield x<br>    }<br></pre>	This code is a sequence expression that uses both yield to produce single elements and yield! to produce lists of elements. It does this by matching on a discriminated union.&nbsp;
-What feature allows for the creation of ad-hoc types?	Type abbreviations, such as:&nbsp;<div>type NodeList = List&lt;node&gt; allow you to create ad-hoc types.&nbsp;</div>
+What feature allows for the creation of ad-hoc types?	Type abbreviations, such as:&nbsp;<code>type NodeList = List&lt;node&gt;</code> allow you to create ad-hoc types.&nbsp;
 What is a fundamental limitation of type systems that TypeProviders address?	TypeProviders address the fundamental limitation of type systems in that type systems only describe the shape of data <i>within</i>&nbsp;programs.&nbsp;
 What feature uses the F# compiler to wrap external data so you can focus coding?	TypeProviders are the F# feature that leverages the F# compiler to handle all the type-wrapper-conversion-generation stuff for you so you can just focus on coding.&nbsp;
 At what point during code lifetime does a TypeProvider generate wrappers?	Wrappers provided by TypeProviders are generated at <i>design time</i>&nbsp;so you can interact with them in the IDE or FSI window.&nbsp;
@@ -413,8 +413,8 @@ What is the erasure of a provided type with respect to the object hierarchy?	The
 What is the erasure of a provided type when the provided type is an interface?	The erasure of a provided erased interface type is always Object.&nbsp;
 All representations of a provided type must be compatible with what?	All representations of a provided type must be compatible with the erasure of the provided type.&nbsp;
 When you establish a provided type with <code>ProvidedTypeDefinition</code> what does <code>baseType</code> parameter specify?	The <code>baseType</code> parameter specifies what the provided type erasure will be - aka what the provided type will look like in compiled code.&nbsp;
-What is this code specifying with respect to representation of provided objects?<div><br /></div><div><div>&nbsp;ProvidedConstructor(parameters = [],&nbsp;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;InvokeCode= (fun args -&gt; &lt;@@ (new List&lt;string&gt;()) :&gt; obj @@&gt;))</div></div>	This code is specifying a representation of provided objects in terms of a list of strings.&nbsp;
-What is the following specifying with respect to provided type representations?<div><br /></div><div>type InternalData() =&nbsp;</div><div>&nbsp; &nbsp;let data = List&lt;string&gt;()</div><div>&nbsp; &nbsp;member x.RuntimeCall() = data.Count</div><div><br /></div><div>ProvidedConstructor(parameters = [],</div><div>&nbsp; &nbsp;InvokeCode = (fun args -&gt; &lt;@@ (new InternalData()) :&gt; obj @@&gt;))&nbsp;</div>	InternalData is defined in the type provider and is used at runtime to form the representation along with one or more runtime operations. Provided members can then construct instances of this object type.&nbsp;
+What is this code specifying with respect to representation of provided objects?<div><br /><code>ProvidedConstructor(parameters = [],&nbsp;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;InvokeCode= (fun args -&gt; &lt;@@ (new List&lt;string&gt;()) :&gt; obj @@&gt;))</code></div>	This code is specifying a representation of provided objects in terms of a list of strings.&nbsp;
+What is the following specifying with respect to provided type representations?<div><br /></div><code>type InternalData() =&nbsp;</div><div>&nbsp; &nbsp;let data = List&lt;string&gt;()</div><div>&nbsp; &nbsp;member x.RuntimeCall() = data.Count</div><div><br /></div><div>ProvidedConstructor(parameters = [],</div><div>&nbsp; &nbsp;InvokeCode = (fun args -&gt; &lt;@@ (new InternalData()) :&gt; obj @@&gt;))&nbsp;</div></code>	InternalData is defined in the type provider and is used at runtime to form the representation along with one or more runtime operations. Provided members can then construct instances of this object type.&nbsp;
 Can you use a type provider defined type as the type erasure for a provided type?	Yes, you can use a type you have defined as the baseType when constructing the&nbsp;<div>ProvidedTypeDefinition(..., baseType = Some typeof&lt;InternalData&gt; )</div><div>...</div><div>ProvidedConstructor(..., InvokeCode = (fun args -&gt; &lt;@@ new InternalData() @@&gt;, ...)</div>
 Define keyword: abstract	Indicates a method that has either no implementation in the type in which it is declared or that it is virtual and has a default implementation.&nbsp;
 Define keyword: and	Used to create mutally recursive bindings, in property declarations and with multiple constraints on generic parameters.&nbsp;
