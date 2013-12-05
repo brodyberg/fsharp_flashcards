@@ -274,7 +274,7 @@ What is a type abbreviation?	A type abbreviation is an alias or alternate name f
 What is the syntax for type abbreviation?	type type-abbreviation = type-name
 What are the uses of type abbreviations?	You can use type abbreviations to give a type a more meaningful name for readability, or an easy to use name for a type that's otherwise difficult to write out.&nbsp;
 How are type abbreviations compiled?	They aren't preserved in the .NET Framework MSIL - so if you call an F# assembly from another .NET Framework language you'll have to use the underlying type.&nbsp;
-What is the following:&nbsp;<div>type transform&lt;'a&gt; = 'a -&gt; 'a</div>	Transform is a type abbreviation that represents a function that takes a single argument of any type and returns a single value of that same type.&nbsp;
+What is the following:&nbsp;<div><code>type transform&lt;'a&gt; = 'a -&gt; 'a</code></div>	Transform is a type abbreviation that represents a function that takes a single argument of any type and returns a single value of that same type.&nbsp;
 With respect to syntax, what do square brackets around a production symbolize?	Square brackets symbolize an optional production.&nbsp;
 With respect to syntax, what do literal productions symbolize?	A literal production symbolizes a required production within the larger construct.&nbsp;
 Define Symbol or Operator: !	1. Dereferences a reference cell<div>2. After keyword, invokes modified control within a workflow</div>
@@ -350,7 +350,7 @@ Define Symbol or Operator: ^^^	Computes bitwise exclusive OR operation
 Define Symbol or Operator: _	1. Wildcard pattern<div>2. Specifies an anonymous generic parameter</div>
 Define Symbol or Operator: `	Used internally to indicate a generic type parameter
 Define Symbol or Operator: {...}	1. Delimits a squence of expressions and computation expressions<div>2. Used in record definitions</div>
-Define Symbol or Operator: |	Delimits individual match cases, individual discriminated union cases and enumeration values.&nbsp;
+Define Symbol or Operator: <br /><code>|</code>	Delimits individual match cases<div>Delimits individual discriminated union cases</div><div>Delimits enumeration values.&nbsp;</div>
 Define Symbol or Operator: ||	Boolean OR
 Define Symbol or Operator: |||	Bitwise OR
 Define Symbol or Operator: |&gt;	Forward Pipe Operator: Passes the result of the left side to the function on the right side.&nbsp;
@@ -405,10 +405,10 @@ All representations of a provided type must be compatible with what?	All represe
 When you establish a provided type with <code>ProvidedTypeDefinition</code> what does <code>baseType</code> parameter specify?	The <code>baseType</code> parameter specifies what the provided type erasure will be - aka what the provided type will look like in compiled code.&nbsp;
 What is this code specifying with respect to representation of provided objects?<div><br /><code>ProvidedConstructor(parameters = [],&nbsp;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;InvokeCode= (fun args -&gt; &lt;@@ (new List&lt;string&gt;()) :&gt; obj @@&gt;))</code></div>	This code is specifying a representation of provided objects in terms of a list of strings.&nbsp;
 What is the following specifying with respect to provided type representations?<div><br /></div><code>type InternalData() =&nbsp;</div><div>&nbsp; &nbsp;let data = List&lt;string&gt;()</div><div>&nbsp; &nbsp;member x.RuntimeCall() = data.Count</div><div><br /></div><div>ProvidedConstructor(parameters = [],</div><div>&nbsp; &nbsp;InvokeCode = (fun args -&gt; &lt;@@ (new InternalData()) :&gt; obj @@&gt;))&nbsp;</div></code>	InternalData is defined in the type provider and is used at runtime to form the representation along with one or more runtime operations. Provided members can then construct instances of this object type.&nbsp;
-Can you use a type provider defined type as the type erasure for a provided type?	Yes, you can use a type you have defined as the baseType when constructing the&nbsp;<div>ProvidedTypeDefinition(..., baseType = Some typeof&lt;InternalData&gt; )</div><div>...</div><div>ProvidedConstructor(..., InvokeCode = (fun args -&gt; &lt;@@ new InternalData() @@&gt;, ...)</div>
+Can you use a type provider defined type as the type erasure for a provided type?	Yes, you can use a type you have defined as the baseType when constructing the&nbsp;<br><code><pre>ProvidedTypeDefinition(..., baseType = Some typeof&lt;InternalData&gt; )<br>...<br>    ProvidedConstructor(..., <br>         InvokeCode = (fun args -&gt; &lt;@@ new InternalData() @@&gt;, ...)</pre></code>
 Define keyword: abstract	Indicates a method that has either no implementation in the type in which it is declared or that it is virtual and has a default implementation.&nbsp;
 Define keyword: and	Used to create mutally recursive bindings, in property declarations and with multiple constraints on generic parameters.&nbsp;
-Define keyword: as	1. Optionally used to give a name to the self-identifier in a class<div>2. Used to give a name to a whole pattern within a pattern match. ex. (a, b) as tuple1</div>
+Define keyword: as	1. Optionally used to give a name to the self-identifier in a class<div>2. Used to give a name to a whole pattern within a pattern match. ex.<br /><br><code>(a, b) as tuple1</code></div>
 Define keyword:&nbsp;assert	Used to verify code during debugging
 Define keyword:&nbsp;base	Used by derived classes to refer to the parent class.&nbsp;
 Define keyword:&nbsp;begin	In verbose syntax indicates start of a code block.&nbsp;
